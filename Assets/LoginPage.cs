@@ -10,19 +10,19 @@ public class LoginPage : MonoBehaviour {
 
 	public InputField nameInput;
 	public InputField passwInput;
-	public InputField objName;
+    public GuiManager guiManager;
 
 	private ParseUser user = null;
 
 	void Start()
-	{
-		if (ParseUser.CurrentUser == null)
+	{  
+        user = ParseUser.CurrentUser;
+		if (user == null)
 		{
 			//show login page
 		}
 		else
-		{
-			user = ParseUser.CurrentUser;
+		{ 
 			//user is signed up and cant work -> show his home page
 		}
 	}
@@ -33,50 +33,16 @@ public class LoginPage : MonoBehaviour {
 
 	}
 
-	public void CreateTestObject()
-	{
 
-		Debug.Log("TestObjectCreated");
-		ParseObject testObject = new ParseObject("TestObject");
-		testObject["foo"] = "bar";
-		try
-		{
-			testObject.SaveAsync().ContinueWith(task =>
-				{
-					if (task.IsCanceled || task.IsFaulted)
-					{
-						Debug.LogError("Error, cant create data");
-						// Errors from Parse Cloud and network interactions
-						using (IEnumerator<System.Exception> enumerator = task.Exception.InnerExceptions.GetEnumerator())
-						{
-							if (enumerator.MoveNext())
-							{
-								ParseException error = (ParseException)enumerator.Current;
-
-								Debug.LogError("ERROR: " + error.Message);
-							}
-						}
-					}
-					else
-					{
-						Debug.LogError("Has been created");
-					}
-				});
-		}
-		catch (InvalidOperationException e)
-		{
-			Debug.LogError("ERROR: " + e.Message);
-		}
-	}
 	public void CreateUser()
 	{
 		var user = new ParseUser()
 		{
 			Username = nameInput.text,
-			Password = passwInput.text,
-			Email = "email@example.com"
+			Password = passwInput.text/*,
+			Email = "email@example.com"*/
 		};
-		user["phone"] = objName.text;
+		//user["phone"] = objName.text;
 
 		try
 		{
@@ -90,13 +56,15 @@ public class LoginPage : MonoBehaviour {
 						if (enumerator.MoveNext())
 						{
 							ParseException error = (ParseException)enumerator.Current;
-							Debug.LogError("ERROR: " + error.Message);
+                            Debug.LogError("ERROR: " + error.Message);
+                            Debug.LogError("Name: " + nameInput.text + " Passw: " + passwInput.text);
 						}
 					}
 				}
 				else
 				{
-					Debug.Log("LOGIN: " + "SUCCESS");
+                    Debug.Log("SIGNUP: " + "SUCCESS");
+                    guiManager.ShowSignUpAditionalInfoPage();
 				}
 			});
 		}
@@ -104,15 +72,7 @@ public class LoginPage : MonoBehaviour {
 		{
 			Debug.LogError("ERROR: " + e.Message);
 		}
-	}
-	public void CreateCustomObj()
-	{
-		ParseObject bfo = new ParseObject(objName.text);
-		bfo["foo"] = "bar";
-		bfo["score"] = "1000";
-		bfo["var"] = 100;
-		bfo.SaveAsync();
-	}
+	} 
 
 	public void LogIn()
 	{

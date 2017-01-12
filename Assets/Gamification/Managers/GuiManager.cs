@@ -4,8 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GuiManager : MonoBehaviour { 
+public class GuiManager : Singleton<GuiManager> { 
+    protected GuiManager () {} // guarantee this will be always a singleton only - can't use the constructor!
+
     public GameObject[] pages;
+    public LoadingManager loading;
+    public SnackMessage message;
 
     void Start(){
         ShowPage("LoginPage");
@@ -33,7 +37,6 @@ public class GuiManager : MonoBehaviour {
                 page.SetActive(false);
         }  
         Debug.Log("GUI : SWITCHED TO " + pageName +" PAGE");
-    }
-
+    } 
 } 
 

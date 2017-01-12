@@ -10,14 +10,13 @@ public class UserHomePage : MonoBehaviour {
     private ParseUser user = null; 
     public Text userName;
     public Text sNummer;
-    public Text faculty;
-    public GuiManager guiManager;
+    public Text faculty; 
 
     void OnEnable(){
         user = ParseUser.CurrentUser;
         if (user == null)
         {
-            guiManager.ShowLoginPage();
+            GuiManager.Instance.ShowLoginPage();
             return;
         } 
         userName.text = user.Username;

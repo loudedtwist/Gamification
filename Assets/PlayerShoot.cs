@@ -49,13 +49,21 @@ public class PlayerShoot : NetworkBehaviour {
     /// </summary>
     [SyncVar]
     int health = 1000000000;
+
     int local;
 
     [ClientRpc]
     void RpcDamage(int amount)
     {
-        GuiManager.Instance.WriteToLog("CLient got id from Server: " + amount);
-        Debug.LogError("Took damage:" + amount + "; MY ID:" + transform.name + " IS CLIENT "+ isClient + " random ID " + uniqueInt + " From server" + amount);
+        if (transform.name == "Player 1")
+        {
+            GuiManager.Instance.WriteToLog("CLient got id from Server: " + amount + " PLAYER 1");
+        }
+        else
+        {
+            GuiManager.Instance.WriteToLog("CLient got id from Server: " + amount);
+            Debug.LogError("Took damage:" + amount + "; MY ID:" + transform.name + " IS CLIENT " + isClient + " random ID " + uniqueInt + " From server" + amount);
+        }
     }
 
     public void TakeDamage(int amount)

@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 114386761946832172}
   - component: {fileID: 54037171855123010}
   - component: {fileID: 114033795166364812}
+  - component: {fileID: 114408838584613876}
   m_Layer: 0
   m_Name: PlayerWithCam
   m_TagString: Untagged
@@ -243,6 +244,17 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
+--- !u!114 &114408838584613876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968155700264472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae713dc75777045e992c8d44892523ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114719803802607666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,7 +333,6 @@ MonoBehaviour:
   componentsToDisable:
   - {fileID: 114719803802607666}
   - {fileID: 114033795166364812}
-  sceneCamera: {fileID: 0}
 --- !u!124 &124705121269314298
 Behaviour:
   m_ObjectHideFlags: 1

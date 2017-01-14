@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GuiManager : Singleton<GuiManager> { 
+public class GuiManager : SimpleSingleton<GuiManager> { 
     protected GuiManager () {} // guarantee this will be always a singleton only - can't use the constructor!
 
     public GameObject[] pages;
@@ -32,6 +32,9 @@ public class GuiManager : Singleton<GuiManager> {
     public void ShowBattleGroundLobbyPage(){ 
         MainThread.Call(ShowPage, "BattleGroundLobbyPage");
     }
+    public void ShowWaitingForUserPage(){
+        MainThread.Call(ShowPage, "WaitingForUsersPage");
+    }
 
     private void ShowPage(object pageNameObj){
         var pageName = pageNameObj.ToString();
@@ -43,8 +46,16 @@ public class GuiManager : Singleton<GuiManager> {
         }  
         Debug.Log("GUI : SWITCHED TO " + pageName +" PAGE");
     } 
+
+
     public Text log;
+    public Text connectedUsers;
+    public void SetConnectedUsersLabel(int num){ 
+        connectedUsers.text = ""+num;
+    }
     public void WriteToLog(string text){
+        if (log == null)
+            log = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
         log.text = text;
     }
 } 

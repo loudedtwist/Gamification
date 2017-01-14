@@ -6,7 +6,9 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
 public class HostGame : MonoBehaviour {
-    
+
+    public PlayerGui playerGui;
+
     [SerializeField]
     private uint roomSize = 6; 
     private string roomName;
@@ -26,10 +28,9 @@ public class HostGame : MonoBehaviour {
 
     public void CreateRoom(){
         if(roomName != "" && roomName != null){
-            Debug.Log("Creating room: " + roomName + "with room for " + roomSize + " player");
-
+            Debug.Log("Creating room: " + roomName + "with room for " + roomSize + " player"); 
             //create room 
-            networkManager.matchMaker.CreateMatch(roomName,roomSize,true,"","","",0,0,networkManager.OnMatchCreate);
+            networkManager.matchMaker.CreateMatch(roomName,roomSize,true,"","","",0,0, OnMatchCreate);
         }
     }
 
@@ -40,17 +41,43 @@ public class HostGame : MonoBehaviour {
         foreach(var match in matchList){
             //if found BattleGround join game like this
             //networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
-            networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
+            networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, OnMatchJoined);
             message += match.name + "; ";
         }
        
         Debug.Log(message);
     }
 
+    public void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo){
+        Debug.Log("CREATED room: " + success + "; Info:" + matchInfo.ToString() ); 
+        if (success)
+        { 
+            MatchInfo hostInfo = matchInfo;
+            NetworkServer.Listen(hostInfo, 7777); 
+            networkManager.StartHost(hostInfo);
+            //playerGui.GoToWaitingForUserPage();
+            GuiManager.Instance.ShowWaitingForUserPage();
+        }
+        else
+        {
+            Debug.LogError("Create match failed");
+        }
+    }
+
     //Die funktion bekommt eine liste von room. Wir suchen unseren Raum in der Liste. 
     //Wenn es denn noch nicht gibt erstellen wir selbst einen mit dem namen den wir von QR gelesen haben; 
     public void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo){  
         Debug.Log("JOINED "+ success + " . " + extendedInfo + "; Info: " + matchInfo.address + ", " + matchInfo.ToString());
+        if (success)
+        { 
+            MatchInfo hostInfo = matchInfo;
+            networkManager.StartClient(hostInfo);
+            GuiManager.Instance.ShowWaitingForUserPage();
+        }
+        else
+        {
+            Debug.LogError("Join match failed");
+        }
     }
 	
 }

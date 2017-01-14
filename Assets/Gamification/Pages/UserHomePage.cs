@@ -19,6 +19,8 @@ public class UserHomePage : MonoBehaviour {
             GuiManager.Instance.ShowLoginPage();
             return;
         } 
+        if (userName == null || sNummer == null || faculty == null)
+            return; 
         userName.text = user.Username;
         sNummer.text = user.Get<string>("sNummer");
         faculty.text = user.Get<string>("faculty");

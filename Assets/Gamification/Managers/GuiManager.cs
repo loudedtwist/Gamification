@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GuiManager : Singleton<GuiManager> { 
@@ -28,6 +29,10 @@ public class GuiManager : Singleton<GuiManager> {
         MainThread.Call(ShowPage, "UserHomePage");
     }   
 
+    public void ShowBattleGroundLobbyPage(){ 
+        MainThread.Call(ShowPage, "BattleGroundLobbyPage");
+    }
+
     private void ShowPage(object pageNameObj){
         var pageName = pageNameObj.ToString();
         foreach(var page in pages){
@@ -38,5 +43,9 @@ public class GuiManager : Singleton<GuiManager> {
         }  
         Debug.Log("GUI : SWITCHED TO " + pageName +" PAGE");
     } 
+    public Text log;
+    public void WriteToLog(string text){
+        log.text = text;
+    }
 } 
 

@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
  
 public class PlayerController : MonoBehaviour { 
+    public GameObject figure;
     void Update() {
-        if (Input.GetKey(KeyCode.A))
-            gameObject.transform.position += new Vector3(-0.1f, 0.0f, 0.0f);
-
+        if (Input.GetKey(KeyCode.A)){
+            figure.transform.position += new Vector3(-1.1f, 0.0f, 0.0f);
+            Debug.Log("A Pressed" + this.GetInstanceID());
+        }
         if (Input.GetKey(KeyCode.W))
-            gameObject.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            figure.transform.position += new Vector3(0.0f, 1.1f, 0.0f);
 
         if (Input.GetKey(KeyCode.S))
-            gameObject.transform.position += new Vector3(0.0f, -0.1f, 0.0f);
+            figure.transform.position += new Vector3(0.0f, -1.1f, 0.0f);
 
         if (Input.GetKey(KeyCode.D))
-            gameObject.transform.position += new Vector3(0.1f, 0.0f, 0.0f);
+            figure.transform.position += new Vector3(1.1f, 0.0f, 0.0f);
     }
 }

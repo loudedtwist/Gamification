@@ -11,4 +11,5 @@ public class PlayerGui : NetworkBehaviour {
             GuiManager.Instance.ShowWaitingForUserPage();
         }
     }
+ 
 }

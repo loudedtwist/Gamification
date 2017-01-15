@@ -8,6 +8,7 @@ using UnityEngine.Networking.Match;
 public class HostGame : MonoBehaviour {
 
     public PlayerGui playerGui;
+    public GameObject waitingRoomPage;
 
     [SerializeField]
     private uint roomSize = 6; 
@@ -54,9 +55,11 @@ public class HostGame : MonoBehaviour {
         { 
             MatchInfo hostInfo = matchInfo;
             NetworkServer.Listen(hostInfo, 7777); 
-            networkManager.StartHost(hostInfo);
-            //playerGui.GoToWaitingForUserPage();
+            networkManager.StartHost(hostInfo); 
             GuiManager.Instance.ShowWaitingForUserPage();
+            //ClientScene.RegisterPrefab(waitingRoomPage);  
+            //GameObject tree = (GameObject)Instantiate(waitingRoomPage, transform.position, transform.rotation);
+            //NetworkServer.Spawn(tree);
         }
         else
         {
@@ -72,6 +75,10 @@ public class HostGame : MonoBehaviour {
         { 
             MatchInfo hostInfo = matchInfo;
             networkManager.StartClient(hostInfo);
+
+            //ClientScene.RegisterPrefab(waitingRoomPage);  
+            //GameObject tree = (GameObject)Instantiate(waitingRoomPage, transform.position, transform.rotation);
+            //NetworkServer.Spawn(tree);
             GuiManager.Instance.ShowWaitingForUserPage();
         }
         else

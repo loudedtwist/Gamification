@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
  
-public class PlayerController : MonoBehaviour { 
+public partial class PlayerController : MonoBehaviour { 
     public GameObject figure;
     void Update() {
         if (Input.GetKey(KeyCode.A)){

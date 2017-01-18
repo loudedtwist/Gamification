@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class WaitingForUsersPage : MonoBehaviour {
-    public UsersConnection connection;
+    public UsersConnection connection; 
     private uint roomSize = 6; 
     private NetworkManager networkManager;
     int playerCount = 0;

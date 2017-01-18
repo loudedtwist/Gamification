@@ -7,13 +7,20 @@ using UnityEngine.UI;
 
 public class GuiManager : SimpleSingleton<GuiManager> { 
     protected GuiManager () {} // guarantee this will be always a singleton only - can't use the constructor!
-
+    public bool showSplashScreen;
     public GameObject[] pages;
     public LoadingManager loading;
     public SnackMessage message;
 
     void Start(){
-        ShowPage("LoginPage");
+        if (showSplashScreen)
+        {
+            ShowPage("SplashPage");
+
+            Invoke("ShowLoginPage", 2.0f);
+        }else{
+            ShowPage("LoginPage");
+        } 
     }
 
 
@@ -35,6 +42,9 @@ public class GuiManager : SimpleSingleton<GuiManager> {
     public void ShowWaitingForUserPage(){
         MainThread.Call(ShowPage, "WaitingForUsersPage");
     }
+    public void ShowSplashPage(){
+        MainThread.Call(ShowPage, "SplashPage");
+    }
 
     private void ShowPage(object pageNameObj){
         var pageName = pageNameObj.ToString();
@@ -50,6 +60,7 @@ public class GuiManager : SimpleSingleton<GuiManager> {
 
     public Text log;
     public Text connectedUsers;
+    public Text connectedUserList;
     public void SetConnectedUsersLabel(int num){ 
         connectedUsers.text = ""+num;
     }
@@ -57,6 +68,10 @@ public class GuiManager : SimpleSingleton<GuiManager> {
         if (log == null)
             log = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
         log.text = text;
+    }
+    public void SetUserList(string users){ 
+        Debug.LogError("GUI MANAGER SET USER" + users);
+            connectedUserList.text = users; 
     }
 } 
 

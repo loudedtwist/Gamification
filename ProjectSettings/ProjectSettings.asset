@@ -458,7 +458,10 @@ PlayerSettings:
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
     Collab: 1
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   cloudProjectId: 597d5203-9917-4515-a991-3f0fc98217d9
   projectName: ParseUnityStarterProject (1)

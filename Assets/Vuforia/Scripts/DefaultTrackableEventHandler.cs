@@ -1,4 +1,4 @@
-/*==============================================================================
+    /*==============================================================================
 Copyright (c) 2010-2014 Qualcomm Connected Experiences, Inc.
 All Rights Reserved.
 Confidential and Proprietary - Protected under copyright and other laws.
@@ -85,6 +85,11 @@ namespace Vuforia
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+
+            //TODO map hier different images to diffr. lobbys -> mTrackableBehaviour.TrackableName
+
+            GuiManager.Instance.BackFromQrScannerPage();
+            GuiManager.Instance.ShowBattleGroundLobbyPage();
         }
 
 

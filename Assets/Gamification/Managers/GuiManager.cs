@@ -11,6 +11,8 @@ public class GuiManager : SimpleSingleton<GuiManager> {
     public GameObject[] pages;
     public LoadingManager loading;
     public SnackMessage message;
+    public GameObject arCam;
+    public GameObject guiLayer;
 
     void Start(){
         if (showSplashScreen)
@@ -56,6 +58,18 @@ public class GuiManager : SimpleSingleton<GuiManager> {
         }  
         Debug.Log("GUI : SWITCHED TO " + pageName +" PAGE");
     } 
+
+    // QR SCANNER 
+    public void ShowQrScannerPage(){
+        arCam.gameObject.SetActive(true);
+        guiLayer.gameObject.SetActive(false);
+    }
+
+    public void BackFromQrScannerPage(){
+        Debug.LogWarning("BACK PRESSED");
+        arCam.gameObject.SetActive(false);
+        guiLayer.gameObject.SetActive(true);
+    }
 
 
     public Text log;

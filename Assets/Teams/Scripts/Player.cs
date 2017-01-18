@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Parse;
 
 public class Player : MonoBehaviour
 {
@@ -8,11 +9,10 @@ public class Player : MonoBehaviour
 
     private int health;
 
-    private Team playerTeam;
-
-    public Team GetMyTeam()
-    {
-        return playerTeam;
+    // Use this for initialization
+    void Start () {
+        transform.name = ParseUser.CurrentUser.Username;
+        nickName = ParseUser.CurrentUser.Username;
     }
 
     public string GetPlayerId()

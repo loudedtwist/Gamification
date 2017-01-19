@@ -11,15 +11,20 @@ public class TeamManager : MonoBehaviour
 
     public UsersConnection usersConnection;
 
-    public void Start()
+    void Start()
     {
-
+        InvokeRepeating("UpdateInfos", 1, 1);
     }
 
-    void Update()
+    void OnDestroy()
+    {
+        CancelInvoke("UpdateInfos");   
+    }
+ 
+    public void UpdateInfos()
     {
         usersConnection.ShowUsersConnected(teamA);
-        usersConnection.ShowUsersConnected(teamB);
+        usersConnection.ShowUsersConnected(teamB); 
     }
 
     public Team GetTeamA()

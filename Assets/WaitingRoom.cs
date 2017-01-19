@@ -13,18 +13,13 @@ public class WaitingRoom : NetworkBehaviour
     [SyncVar] public string players = "";
 
     public Text playersList;
-    //[SyncVar]
-    //public int playersCount = 0; 
 
-    // Use this for initialization
     void Start()
     {
-        //InvokeRepeating("CmdShowConnectedUserNum", 1, 1);
-    }
+        InvokeRepeating("showConnectedUserNumIfServer", 1, 1);
+    } 
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void showConnectedUserNumIfServer(){ 
         if (isServer && isLocalPlayer)
         {
             showConnectedUserNum();

@@ -13,23 +13,20 @@ public class WaitingForUsersPage : MonoBehaviour {
     void Start(){
         if(connection==null) Debug.LogError("UsersConnection script not set in WaitingForUsersPage");
         networkManager = NetworkManager.singleton; 
-        InvokeRepeating("ShowConnectedUserNum", 1, 1);
     } 
-    void OnEnable(){
-        //connection.ShowUsersConnected(playerCount);
+    void OnEnable(){ 
+        InvokeRepeating("ShowConnectedUserNum", 1, 1);
+    }
+    void OnDisable(){
+        CancelInvoke("ShowConnectedUserNum");
     }
     void OnDestroy(){
         CancelInvoke();
     } 
     public void ShowConnectedUserNum(){  
         var isServer = Network.isServer;
-        var newPlayerCount = NetworkLobbyManager.singleton.numPlayers; 
-        /*if(playerCount < newPlayerCount){
-            connection.AddUser();
-            playerCount = newPlayerCount;
-        }*/
-        if(playerCount != newPlayerCount){
-            //    connection.UpdateTeamA(newPlayerCount);
+        var newPlayerCount = NetworkLobbyManager.singleton.numPlayers;  
+        if(playerCount != newPlayerCount){ 
             playerCount = newPlayerCount;
         }
 

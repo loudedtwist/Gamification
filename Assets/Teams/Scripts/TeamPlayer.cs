@@ -13,8 +13,7 @@ public class TeamPlayer : MonoBehaviour
     void Start()
     {
         teamManager = GameObject.FindGameObjectWithTag("TeamManagerTag").GetComponent<TeamManager>();
-        teamManager.SignUpPlayerToTeam(this);
-        //FindMyTeamMates();
+        myTeam = teamManager.SignUpPlayerToTeam(this);
     }
 
     private void OnDestroy()

@@ -5425,8 +5425,8 @@ MonoBehaviour:
   maxPlayerCount: 0
   minPlayerCount: 0
   teamColor: {r: 0.8976033, g: 0.97794116, b: 0.39549094, a: 1}
-  teamColorConnected: {r: 0.72794116, g: 0.24086289, b: 0.24086289, a: 1}
-  teamColorDisconnected: {r: 0.9485294, g: 0.33477506, b: 0.33477506, a: 1}
+  teamColorConnected: {r: 0.9490196, g: 0.33333334, b: 0.33333334, a: 1}
+  teamColorDisconnected: {r: 0.7294118, g: 0.23921569, b: 0.23921569, a: 1}
 --- !u!1001 &1117659496
 Prefab:
   m_ObjectHideFlags: 0

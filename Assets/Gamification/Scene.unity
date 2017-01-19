@@ -584,8 +584,8 @@ GameObject:
   - component: {fileID: 147878214}
   - component: {fileID: 147878213}
   - component: {fileID: 147878212}
-  - component: {fileID: 147878211}
   - component: {fileID: 147878210}
+  - component: {fileID: 147878211}
   - component: {fileID: 147878209}
   - component: {fileID: 147878215}
   m_Layer: 5
@@ -899,6 +899,52 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ea12a2ab6365a64995624be5545cb0c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &155933503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 155933505}
+  - component: {fileID: 155933504}
+  m_Layer: 0
+  m_Name: TeamA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &155933504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155933503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3080883b3a3944fe39b510e934b8a434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamNr: 1
+  maxPlayerCount: 0
+  minPlayerCount: 2
+  teamColor: {r: 0.8897059, g: 0.33021775, b: 0.17663279, a: 0}
+  teamColorConnected: {r: 0.5137255, g: 0.7019608, b: 1, a: 1}
+  teamColorDisconnected: {r: 0.32941177, g: 0.44705883, b: 0.62352943, a: 1}
+--- !u!4 &155933505
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155933503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1309419591}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172793579
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,12 +4153,10 @@ MonoBehaviour:
   - {fileID: 256401538}
   - {fileID: 672857237}
   - {fileID: 936384457}
-  connectedT1: 
   usersT2:
   - {fileID: 387325038}
   - {fileID: 924125208}
   - {fileID: 1602545380}
-  connectedT2: 
 --- !u!1 &759693212
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,7 +5391,7 @@ GameObject:
   - component: {fileID: 1097502276}
   - component: {fileID: 1097502277}
   m_Layer: 0
-  m_Name: Team
+  m_Name: TeamB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5359,12 +5403,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1097502275}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1309419591}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1097502277
 MonoBehaviour:
@@ -5377,9 +5421,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3080883b3a3944fe39b510e934b8a434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamNr: 2
   maxPlayerCount: 0
   minPlayerCount: 0
-  teamColor: {r: 0, g: 0, b: 0.6, a: 1}
+  teamColor: {r: 0.8976033, g: 0.97794116, b: 0.39549094, a: 1}
+  teamColorConnected: {r: 0.72794116, g: 0.24086289, b: 0.24086289, a: 1}
+  teamColorDisconnected: {r: 0.9485294, g: 0.33477506, b: 0.33477506, a: 1}
 --- !u!1001 &1117659496
 Prefab:
   m_ObjectHideFlags: 0
@@ -6612,11 +6659,11 @@ GameObject:
   - component: {fileID: 1309419590}
   m_Layer: 0
   m_Name: Team Manager
-  m_TagString: Untagged
+  m_TagString: TeamManagerTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1309419590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6628,8 +6675,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da23d21db72045d2b953ae6b5b26eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamA: {fileID: 0}
-  teamB: {fileID: 0}
+  teamA: {fileID: 155933504}
+  teamB: {fileID: 1097502277}
+  usersConnection: {fileID: 759605947}
 --- !u!4 &1309419591
 Transform:
   m_ObjectHideFlags: 0
@@ -6640,6 +6688,7 @@ Transform:
   m_LocalPosition: {x: 26.122803, y: 368.71158, z: -87.22754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 155933505}
   - {fileID: 1097502276}
   m_Father: {fileID: 0}
   m_RootOrder: 5

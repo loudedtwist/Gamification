@@ -4,34 +4,43 @@ using UnityEngine;
 public class Team : MonoBehaviour
 {
     private string teamName;
+    public int teamNr;
 
-    List<Player> players;
+    List<TeamPlayer> players;
+
+    public List<TeamPlayer> Players
+    {
+        get { return players; }
+    }
 
     public int maxPlayerCount;
 
     public int minPlayerCount = 2;
 
     public Color teamColor;
+    public Color teamColorConnected;
+    public Color teamColorDisconnected;
 
-    public Team()
+    public void Start()
     {
-        players = new List<Player>();
-        teamColor = new Color(0.6f,0.6f,0.8f);
+        players = new List<TeamPlayer>();
+        teamColor = new Color(0.6f, 0.6f, 0.8f);
     }
 
-    public void AddPlayerToTeam(Player player)
+    public void AddPlayerToTeam(TeamPlayer player)
     {
         if (player != null)
             players.Add(player);
     }
 
-    public void DeletePlayerFromTeam(Player player)
+    public void DeletePlayerFromTeam(TeamPlayer player)
     {
         foreach (var p in players)
         {
-            if (p.GetPlayerId() == player.GetPlayerId())
+            if (p == player)
                 players.Remove(p);
         }
     }
+
 
 }

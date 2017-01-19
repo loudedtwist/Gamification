@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 114707619933579800}
   - component: {fileID: 114183831966472486}
   - component: {fileID: 114657865050738014}
+  - component: {fileID: 114735070546534682}
   m_Layer: 0
   m_Name: PlayerWithCam
   m_TagString: Player
@@ -626,6 +627,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d9e75b9a3a04977b300b6c0cc853d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activetedColorTeamA: {r: 0, g: 0, b: 0, a: 0}
+  deactivetedColorTeamA: {r: 0, g: 0, b: 0, a: 0}
+  activetedColorTeamB: {r: 0, g: 0, b: 0, a: 0}
+  deactivetedColorTeamB: {r: 0, g: 0, b: 0, a: 0}
   usersT1:
   - {fileID: 114265947614774880}
   - {fileID: 114423052071553450}
@@ -907,6 +912,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figure: {fileID: 1361336763496114}
+--- !u!114 &114735070546534682
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968155700264472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42476503929254df58692ee52c7f95db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTeam: {fileID: 0}
+  teamManager: {fileID: 0}
 --- !u!114 &114755962913461106
 MonoBehaviour:
   m_ObjectHideFlags: 1

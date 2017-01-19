@@ -10,7 +10,7 @@ public class UserListInfo : MonoBehaviour {
 		
 	}
 
-    void Update(){
+    void Update() {
         var players = GameObject.FindGameObjectsWithTag("Player");
         if (players == null)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITeamPlayer
+public interface ITeamSigner
 {
-    Player GetTeamPlayer();
+    void SignPlayerToTeam(Player player);
 }

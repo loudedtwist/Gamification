@@ -3,20 +3,19 @@ using Parse;
 
 public class Player : MonoBehaviour
 {
-    private string playerId;
-
-    private string nickName;
-
     private int health;
 
-    // Use this for initialization
-    void Start () {
+    private int score;
+
+    private int lvl;
+
+    void Start()
+    {
         transform.name = ParseUser.CurrentUser.Username;
-        nickName = ParseUser.CurrentUser.Username;
+        NickName = ParseUser.CurrentUser.Username;
     }
 
-    public string GetPlayerId()
-    {
-        return playerId;
-    }
+    public string PlayerId { get; private set; }
+
+    public string NickName { get; set; }
 }

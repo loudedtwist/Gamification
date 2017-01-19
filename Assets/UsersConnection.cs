@@ -4,56 +4,34 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class UsersConnection : MonoBehaviour {
+public class UsersConnection : MonoBehaviour
+{
+    public Image[] usersT1;
 
-    Color activetedColor;
-    Color deactivetedColor;
-    public Image []usersT1; 
-    public bool []connectedT1; 
+    public Image[] usersT2;
 
-    public Image []usersT2; 
-    public bool []connectedT2; 
-
-    void OnEnable(){
-        connectedT1 = new bool[]{ false, false, false };
-        connectedT2 = new bool[]{ false, false, false };
-        activetedColor = new Color(131.0f/255, 179.0f/255, 255.0f/255); 
-        deactivetedColor = new Color(84.0f/255, 114.0f/255, 159.0f/255);
-    }
-
-    public void AddUser(){
-        Debug.Log("USER ENTER THE ROOM");
-        bool found = false;
-        for(int i = 0; i< connectedT1.Length; i++){
-            if(connectedT1[i] == false ){
-                found = connectedT1[i] = true; 
-                usersT1[i].color = activetedColor;
-                break;
-            }
-        }
-        if(!found) {
-            //show no free slots, game is ready
-        }
-    } 
-    public void ShowUsersConnected(int anz){
+    public void ShowUsersConnected(Team team)
+    {
         Debug.Log("USER ENTER THE ROOM");
         int found = 0;
-        for(int i = 0; i< connectedT1.Length; i++){
+        int anz = team.Players.Count;
+        for (int i = 0; i < usersT1.Length; i++)
+        {
             if (found < anz)
             {
-                connectedT1[i] = true; 
-                usersT1[i].color = activetedColor; 
+                if(team.teamNr == 1 ) usersT1[i].color = team.teamColorConnected;
+                if(team.teamNr == 2 ) usersT2[i].color = team.teamColorConnected;
                 found++;
             }
             else
             {
-                connectedT1[i] = false; 
-                usersT1[i].color = deactivetedColor;
+                if(team.teamNr == 1 ) usersT1[i].color = team.teamColorDisconnected;
+                if(team.teamNr == 2 ) usersT2[i].color = team.teamColorDisconnected;
             }
-         
         }
-        if(found == 0) {
+        if (found == 0)
+        {
             //show no free slots, game is ready
         }
-    } 
+    }
 }

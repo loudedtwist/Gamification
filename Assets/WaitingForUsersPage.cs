@@ -29,7 +29,7 @@ public class WaitingForUsersPage : MonoBehaviour {
             playerCount = newPlayerCount;
         }*/
         if(playerCount != newPlayerCount){
-            connection.ShowUsersConnected(newPlayerCount);
+            //    connection.UpdateTeamA(newPlayerCount);
             playerCount = newPlayerCount;
         }
 

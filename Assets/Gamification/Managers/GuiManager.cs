@@ -30,6 +30,10 @@ public class GuiManager : SimpleSingleton<GuiManager> {
         MainThread.Call(ShowPage,"SignUpAdditionalInfo");
     }
 
+    public void ShowQuizPage(){ 
+        MainThread.Call(ShowPage,"QuizPage");
+    }
+
     public void ShowLoginPage(){  
         MainThread.Call(ShowPage, "LoginPage");
     }  

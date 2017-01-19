@@ -6,8 +6,16 @@ public class Team : MonoBehaviour
     private string teamName;
     public int teamNr;
 
-    List<TeamPlayer> players;
+    [SerializeField]
+    private bool isReady;
 
+    public bool IsReady
+    {
+        get { return maxPlayerCount == players.Count; }
+        private set{}
+    }
+
+    List<TeamPlayer> players; 
     public List<TeamPlayer> Players
     {
         get { return players; }

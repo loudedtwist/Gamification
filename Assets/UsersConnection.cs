@@ -11,8 +11,7 @@ public class UsersConnection : MonoBehaviour
     public Image[] usersT2;
 
     public void ShowUsersConnected(Team team)
-    {
-        Debug.Log("USER ENTER THE ROOM");
+    { 
         int found = 0;
         int anz = team.Players.Count;
         for (int i = 0; i < usersT1.Length; i++)

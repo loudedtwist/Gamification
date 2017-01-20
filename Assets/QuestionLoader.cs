@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Parse;
 
 public class QuestionLoader : MonoBehaviour {
+    [SerializeField]
+    private TeamManager teamManager;
+
     public Text questionLabel;
     public Text []answerLabels;  
     public Button []answerButtons;  
@@ -13,6 +16,7 @@ public class QuestionLoader : MonoBehaviour {
     private string []answers;  
     private int []randoms;
     private int rightAnswerIndex;
+    private int questionNr;
 
     public Image trueFalse;
  
@@ -49,9 +53,10 @@ public class QuestionLoader : MonoBehaviour {
         } 
     }
 
-    IEnumerator GetQuestionAndUpdateUi () {
+    IEnumerator GetQuestionAndUpdateUi () { 
+        
         var query = ParseObject.GetQuery("Quiz");
-        var asyncTask = query.FirstAsync(); 
+        var asyncTask = query.Skip(questionNr).FirstAsync(); 
 
         while(!asyncTask.IsCompleted) yield return null;
 

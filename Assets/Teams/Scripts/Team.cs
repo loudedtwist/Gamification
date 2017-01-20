@@ -4,11 +4,10 @@ using UnityEngine;
 public class Team : MonoBehaviour
 {
     private string teamName;
-    public int teamNr;
+    public int teamNr; 
 
     [SerializeField]
-    private bool isReady;
-
+    private bool isReady; 
     public bool IsReady
     {
         get { return maxPlayerCount == players.Count; }
@@ -21,8 +20,7 @@ public class Team : MonoBehaviour
         get { return players; }
     }
 
-    public int maxPlayerCount;
-
+    public int maxPlayerCount; 
     public int minPlayerCount = 2;
 
     public Color teamColor;

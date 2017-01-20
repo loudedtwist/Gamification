@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 { 
-    public Team teamA;
-
-    public Team teamB;
+    public Team teamA;  
+    public Team teamB;  
 
     public GameManager gameManager;
 
-    public UsersConnection usersConnection;
+    public UsersConnection usersConnection; 
 
     void Start()
     {
@@ -39,9 +38,10 @@ public class TeamManager : MonoBehaviour
     }
 
     public Team SignUpPlayerToTeam(TeamPlayer player)
-    {
+    { 
         if (teamA.Players.Count > teamB.Players.Count)
         {
+            if(teamB.Players.Count == 0) 
             teamB.Players.Add(player);
             if (teamB.IsReady) return null;
             else return teamB;

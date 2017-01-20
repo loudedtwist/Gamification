@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TeamPlayer : MonoBehaviour
-{
+{ 
     public Team myTeam;
 
-    public TeamManager teamManager;
-
-    private List<TeamPlayer> teammates;
+    [SerializeField]
+    private TeamManager teamManager; 
 
     void Start()
     {

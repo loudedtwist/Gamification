@@ -2904,7 +2904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8955788a4cd4c49a68179912d517e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showSplashScreen: 1
+  showSplashScreen: 0
   pages:
   - {fileID: 144052480}
   - {fileID: 1864162579}
@@ -10491,6 +10491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40fb63d777104915a9dc3d8fcbac9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamManager: {fileID: 1309419590}
   questionLabel: {fileID: 2028984368}
   answerLabels:
   - {fileID: 1117967182}

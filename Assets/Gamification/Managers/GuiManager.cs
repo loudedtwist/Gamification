@@ -45,9 +45,11 @@ public class GuiManager : SimpleSingleton<GuiManager> {
     public void ShowBattleGroundLobbyPage(){ 
         MainThread.Call(ShowPage, "BattleGroundLobbyPage");
     }
+
     public void ShowWaitingForUserPage(){
         MainThread.Call(ShowPage, "WaitingForUsersPage");
     }
+
     public void ShowSplashPage(){
         MainThread.Call(ShowPage, "SplashPage");
     }

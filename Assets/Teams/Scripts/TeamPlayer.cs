@@ -15,7 +15,7 @@ public class TeamPlayer : MonoBehaviour
         teamManager = GameObject.FindGameObjectWithTag("TeamManagerTag").GetComponent<TeamManager>();
         myTeam = teamManager.SignUpPlayerToTeam(this);
         if(myTeam == null){
-            //TODO React to full room
+            //TODO React to full room -> show htw map , 
             Debug.LogError("Can't join the lobby, the room is full");
         }
     }

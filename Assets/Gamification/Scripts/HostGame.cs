@@ -7,15 +7,14 @@ using UnityEngine.Networking.Match;
 
 public class HostGame : MonoBehaviour {
 
-    public PlayerGui playerGui;
-    public GameObject waitingRoomPage;
+    public PlayerGui playerGui; 
 
     [SerializeField]
     private uint roomSize = 6; 
     private string roomName;
     private NetworkManager networkManager;
 
-    void Start(){
+    void OnEnable(){
         networkManager = NetworkManager.singleton;
         if(networkManager.matchMaker == null ){
             networkManager.StartMatchMaker();
@@ -31,6 +30,14 @@ public class HostGame : MonoBehaviour {
         if(roomName != "" && roomName != null){
             Debug.Log("Creating room: " + roomName + "with room for " + roomSize + " player"); 
             //create room 
+            if(networkManager == null){
+                Debug.LogError("NETWORK MANAGER IS NULL");
+                return;
+            }
+            if(networkManager.matchMaker == null){
+                Debug.LogError("NETWORK matchMaker IS NULL");
+                return;
+            }
             networkManager.matchMaker.CreateMatch(roomName,roomSize,true,"","","",0,0, OnMatchCreate);
         }
     }
@@ -56,10 +63,7 @@ public class HostGame : MonoBehaviour {
             MatchInfo hostInfo = matchInfo;
             NetworkServer.Listen(hostInfo, 7777); 
             networkManager.StartHost(hostInfo); 
-            GuiManager.Instance.ShowWaitingForUserPage();
-            //ClientScene.RegisterPrefab(waitingRoomPage);  
-            //GameObject tree = (GameObject)Instantiate(waitingRoomPage, transform.position, transform.rotation);
-            //NetworkServer.Spawn(tree);
+            GuiManager.Instance.ShowWaitingForUserPage(); 
         }
         else
         {
@@ -75,10 +79,7 @@ public class HostGame : MonoBehaviour {
         { 
             MatchInfo hostInfo = matchInfo;
             networkManager.StartClient(hostInfo);
-
-            //ClientScene.RegisterPrefab(waitingRoomPage);  
-            //GameObject tree = (GameObject)Instantiate(waitingRoomPage, transform.position, transform.rotation);
-            //NetworkServer.Spawn(tree);
+ 
             GuiManager.Instance.ShowWaitingForUserPage();
         }
         else

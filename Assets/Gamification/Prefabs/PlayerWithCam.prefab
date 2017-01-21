@@ -562,6 +562,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connection: {fileID: 114225425160558930}
+  networkManager: {fileID: 0}
+  playerCount: 0
 --- !u!114 &114113107069596192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -627,20 +629,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d9e75b9a3a04977b300b6c0cc853d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activetedColorTeamA: {r: 0, g: 0, b: 0, a: 0}
-  deactivetedColorTeamA: {r: 0, g: 0, b: 0, a: 0}
-  activetedColorTeamB: {r: 0, g: 0, b: 0, a: 0}
-  deactivetedColorTeamB: {r: 0, g: 0, b: 0, a: 0}
   usersT1:
   - {fileID: 114265947614774880}
   - {fileID: 114423052071553450}
   - {fileID: 114402892139711618}
-  connectedT1: 
   usersT2:
   - {fileID: 114113107069596192}
   - {fileID: 114569318697827544}
   - {fileID: 114094694828886924}
-  connectedT2: 
 --- !u!114 &114265947614774880
 MonoBehaviour:
   m_ObjectHideFlags: 1

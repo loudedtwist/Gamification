@@ -385,7 +385,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentsToDisable:
   - {fileID: 114816046542251426}
-  sceneCamera: {fileID: 0}
 --- !u!114 &114446787964374142
 MonoBehaviour:
   m_ObjectHideFlags: 1

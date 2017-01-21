@@ -15,7 +15,7 @@ public class QuestionLoader : MonoBehaviour {
     private string question;
     private string []answers;  
     private int []randoms;
-    private int rightAnswerIndex;
+    public int rightAnswerIndex;
     private int questionNr;
 
     public Image trueFalse;
@@ -25,11 +25,23 @@ public class QuestionLoader : MonoBehaviour {
         answers = new string[3];
         randoms = new int[3]; 
 
+        GetQuestionNr();
         FillWithRandomUniqueNumbers(randoms);
         answerButtons.ChangeStateOfButtons(false);  
         StartCoroutine (GetQuestionAndUpdateUi()); 
         //execution of code after last line will continue immediately
 	}
+
+    void GetQuestionNr()
+    {
+        GameObject myObj = GameObject.FindGameObjectWithTag("Question");
+        if (myObj != null)
+        {
+            var question = myObj.GetComponent<Question>();
+            if (question == null) return;
+            questionNr = question.questionNr;
+        }
+    }
 
     void FillWithRandomUniqueNumbers(int []arrayToFill){ 
         int random;
@@ -43,6 +55,7 @@ public class QuestionLoader : MonoBehaviour {
             arrayToFill[i] = random;
         }
     }
+
     void RandomizeAnswerButtons(string[] answersFromServer)
     { 
         rightAnswerIndex = randoms[0];
@@ -56,8 +69,7 @@ public class QuestionLoader : MonoBehaviour {
     IEnumerator GetQuestionAndUpdateUi () { 
         
         var query = ParseObject.GetQuery("Quiz");
-        var asyncTask = query.Skip(questionNr).FirstAsync(); 
-
+        var asyncTask = query.Skip(questionNr).FirstAsync();  
         while(!asyncTask.IsCompleted) yield return null;
 
         //after task is ready it will execute  code on main thread.
@@ -82,6 +94,7 @@ public class QuestionLoader : MonoBehaviour {
     }
 
     public void OnAnswerClicked(int buttonIndex){
+        Debug.LogAssertion("BUTTON INDEX: " + buttonIndex + " RIGHT ANSWER: " + rightAnswerIndex);
         if (buttonIndex == rightAnswerIndex)
             trueFalse.color = Color.green;
         else 

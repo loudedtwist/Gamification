@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TeamManager : MonoBehaviour
-{ 
+{
     public TeamPlayer localPlayer;
 
-    public Team teamA;  
-    public Team teamB;  
+    public Team teamA;
+    public Team teamB;
 
     public GameManager gameManager;
 
-    public UsersConnection usersConnection; 
+    public UsersConnection usersConnection;
 
     void Start()
     {
@@ -20,13 +20,13 @@ public class TeamManager : MonoBehaviour
 
     void OnDestroy()
     {
-        CancelInvoke("UpdateInfos");   
+        CancelInvoke("UpdateInfos");
     }
- 
+
     public void UpdateInfos()
     {
         usersConnection.ShowUsersConnected(teamA);
-        usersConnection.ShowUsersConnected(teamB); 
+        usersConnection.ShowUsersConnected(teamB);
     }
 
     public Team GetTeamA()
@@ -40,9 +40,9 @@ public class TeamManager : MonoBehaviour
     }
 
     public Team SignUpPlayerToTeam(TeamPlayer player)
-    { 
+    {
         SaveIfLocalPlayer(player);
-        
+
         var playerTeam = AssignToTeam(player);
 
         StartGameIfTeamAreReady();
@@ -60,20 +60,13 @@ public class TeamManager : MonoBehaviour
     {
         if (teamA.Players.Count > teamB.Players.Count)
         {
-            //if (teamB.Players.Count == 0)
-                teamB.Players.Add(player);
-            //if (teamB.IsReady)
-            //    return null;
-            //else
-                return teamB;
+            teamB.Players.Add(player);
+            return teamB;
         }
         else
         {
             teamA.Players.Add(player);
-            //if (teamA.IsReady)
-            //    return null;
-            //else
-                return teamA;
+            return teamA;
         }
     }
 

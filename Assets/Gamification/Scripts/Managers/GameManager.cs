@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        readyGoBanner.gameObject.transform.parent.gameObject.SetActive(true);
         Invoke("ChangeToQuizPage", 4.0f);
         InvokeRepeating("DecrementTimeToStart", 0.0f, 1.0f);
     }
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeToQuizPage()
     {
+        readyGoBanner.gameObject.transform.parent.gameObject.SetActive(false);
         GuiManager.Instance.ShowQuizPage();
     }
 

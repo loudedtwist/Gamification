@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6633e2e0-89da-4b86-a4af-5958f81e6eff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.EwzGamificationParse/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.EwzGamificationParse/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Gamification/Scenes/Scene.unity" afterPath="$PROJECT_DIR$/Assets/Gamification/Scenes/Scene.unity" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs" afterPath="$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Gamification/Scripts/Teams/Scripts/TeamManager.cs" afterPath="$PROJECT_DIR$/Assets/Gamification/Scripts/Teams/Scripts/TeamManager.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QCAR/somedata16" afterPath="$PROJECT_DIR$/QCAR/somedata16" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,28 +61,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TeamManager.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TeamManager.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Gamification/Scripts/Teams/Scripts/TeamManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+            <state relative-caret-position="428">
+              <caret line="75" column="27" lean-forward="false" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
               <folding>
-                <marker date="1485105621000" expanded="true" signature="6:78" ph="..." />
-                <marker date="1485105621000" expanded="true" signature="120:1841" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="310:368" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="390:442" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="474:589" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="617:651" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="679:713" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="768:936" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="983:1063" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="1105:1577" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="1166:1386" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="1276:1346" ph="/* if (teamB.IsReady) ... */" />
-                <marker date="1485105621000" expanded="true" signature="1399:1571" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="1461:1531" ph="/* if (teamA.IsReady) ... */" />
-                <marker date="1485105621000" expanded="true" signature="1613:1706" ph="{...}" />
-                <marker date="1485105621000" expanded="true" signature="1767:1839" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="6:78" ph="..." />
+                <marker date="1485106348000" expanded="true" signature="120:1599" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="304:362" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="384:433" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="464:578" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="606:640" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="668:702" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="757:916" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="963:1043" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="1085:1335" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="1146:1231" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="1244:1329" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="1371:1464" ph="{...}" />
+                <marker date="1485106348000" expanded="true" signature="1525:1597" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -128,14 +123,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameManager.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameManager.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding>
-                <marker date="1485104753000" expanded="true" signature="847:903" ph="{...}" />
-              </folding>
+            <state relative-caret-position="378">
+              <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,8 +152,8 @@
         <option value="$PROJECT_DIR$/Assets/WaitingForUsersPage.cs" />
         <option value="$PROJECT_DIR$/Assets/UsersConnection.cs" />
         <option value="$PROJECT_DIR$/Assets/Gamification/Scripts/QuestionLoader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Gamification/Scripts/Teams/Scripts/TeamManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -245,12 +238,12 @@
       <workItem from="1484763032686" duration="8229000" />
       <workItem from="1484777257587" duration="821000" />
       <workItem from="1484827980790" duration="9845000" />
-      <workItem from="1485103676914" duration="1659000" />
+      <workItem from="1485103676914" duration="2104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20590000" />
+    <option name="totallyTimeSpent" value="21035000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -588,16 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <marker date="1485104753000" expanded="true" signature="847:903" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Gamification/Scripts/Teams/Scripts/Team.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -633,26 +616,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Gamification/Scripts/Teams/Scripts/TeamManager.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+        <state relative-caret-position="428">
+          <caret line="75" column="27" lean-forward="false" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
           <folding>
-            <marker date="1485105621000" expanded="true" signature="6:78" ph="..." />
-            <marker date="1485105621000" expanded="true" signature="120:1841" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="310:368" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="390:442" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="474:589" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="617:651" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="679:713" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="768:936" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="983:1063" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="1105:1577" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="1166:1386" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="1276:1346" ph="/* if (teamB.IsReady) ... */" />
-            <marker date="1485105621000" expanded="true" signature="1399:1571" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="1461:1531" ph="/* if (teamA.IsReady) ... */" />
-            <marker date="1485105621000" expanded="true" signature="1613:1706" ph="{...}" />
-            <marker date="1485105621000" expanded="true" signature="1767:1839" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="6:78" ph="..." />
+            <marker date="1485106348000" expanded="true" signature="120:1599" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="304:362" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="384:433" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="464:578" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="606:640" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="668:702" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="757:916" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="963:1043" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="1085:1335" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="1146:1231" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="1244:1329" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="1371:1464" ph="{...}" />
+            <marker date="1485106348000" expanded="true" signature="1525:1597" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Gamification/Scripts/Managers/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

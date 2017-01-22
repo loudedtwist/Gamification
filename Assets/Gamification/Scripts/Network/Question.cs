@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Parse;
 
 
 
@@ -57,9 +58,18 @@ public class Question : NetworkBehaviour
 
     public void ChangeMyQuestion()
     {
-        if(!isServer) return;   
-        questionNr = Random.Range(0, 6);
-    } 
+        if(!isServer) return;
+        StartCoroutine (GetQuestionNrAsync());
+        //questionNr = Random.Range(0, 6);
+    }
+
+    private IEnumerator GetQuestionNrAsync()
+    {
+        var countTask = ParseObject.GetQuery("Quiz").CountAsync();
+        while(!countTask.IsCompleted) yield return null;
+        int anz =  countTask.Result;
+        questionNr = Random.Range(0, anz);
+    }
 
     public void AddAnswer(Answer newAnswer){
         answers.Add(newAnswer); 

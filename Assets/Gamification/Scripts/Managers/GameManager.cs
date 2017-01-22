@@ -7,42 +7,51 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Text readyGoBanner;
-    public string readyText;
-    public int secondsUntilStart = 3;
+    public string readyText = "Game starts in ";
+    public float secondsUntilStartVal = 3.0f;
+    public float gameDuration = 20.0f;
 
-    // Use this for initialization
-    void Start()
-    {
-        readyText = "Game starts in ";
-    }
-
+    private float secondsUntilStartCounter;
 
     public void StartGame()
     {
-        readyGoBanner.gameObject.transform.parent.gameObject.SetActive(true);
-        Invoke("ChangeToQuizPage", 4.0f);
+        ShowBanner(true);
+        secondsUntilStartCounter = secondsUntilStartVal;
+        Invoke("ChangeToQuizPage", secondsUntilStartVal + 1.0f);
+        Invoke("FinishGame", secondsUntilStartVal + 1.0f + gameDuration);
         InvokeRepeating("DecrementTimeToStart", 0.0f, 1.0f);
     }
 
     public void DecrementTimeToStart()
     {
-        if (secondsUntilStart == 0)
+        if (secondsUntilStartCounter < 1)
         {
             CancelInvoke("DecrementTimeToStart");
             readyGoBanner.text = "GO";
             return;
         }
-        readyGoBanner.text = readyText + secondsUntilStart;
-        --secondsUntilStart;
+        readyGoBanner.text = readyText + secondsUntilStartCounter;
+        --secondsUntilStartCounter;
     }
 
     public void ChangeToQuizPage()
     {
-        readyGoBanner.gameObject.transform.parent.gameObject.SetActive(false);
+        ShowBanner(false);
         GuiManager.Instance.ShowQuizPage();
     }
 
     public void FinishGame()
     {
+        Debug.LogAssertion("SCORE PAGE ");
+        Debug.LogAssertion("SCORE PAGE #");
+        Debug.LogAssertion("SCORE PAGE ##");
+        Debug.LogAssertion("SCORE PAGE ###");
+        Debug.LogAssertion("SCORE PAGE ####");
+        //go to score page
+    }
+
+    void ShowBanner(bool state)
+    {
+        readyGoBanner.gameObject.transform.parent.gameObject.SetActive(state);
     }
 }

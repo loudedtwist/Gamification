@@ -45,7 +45,7 @@ public class TeamManager : MonoBehaviour
 
         var playerTeam = AssignToTeam(player);
 
-        StartGameIfTeamAreReady();
+        StartGameIfTeamsAreReady();
 
         return playerTeam;
     }
@@ -70,7 +70,7 @@ public class TeamManager : MonoBehaviour
         }
     }
 
-    void StartGameIfTeamAreReady()
+    void StartGameIfTeamsAreReady()
     {
         if (teamA.IsReady && teamB.IsReady)
             gameManager.StartGame();

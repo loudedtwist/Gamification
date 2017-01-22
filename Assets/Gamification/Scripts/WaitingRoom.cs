@@ -50,14 +50,7 @@ public class WaitingRoom : NetworkBehaviour
     //[Command]
     public void showConnectedUserNum()
     {
-        var isServer = Network.isServer;
         int playersCount = NetworkLobbyManager.singleton.numPlayers;
-
-        string log = "IS SERVER: " + isServer;
-        log += "\n";
-        log += "COUNT USERS: " + playersCount;
-        log += "\n";
-        Debug.LogError(log);
         RpcUpdateUserCount(playersCount);
     }
 

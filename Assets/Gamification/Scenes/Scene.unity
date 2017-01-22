@@ -1110,6 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamNr: 1
   isReady: 0
+  teamScore: 0
   maxPlayerCount: 1
   minPlayerCount: 1
   teamColor: {r: 0.8897059, g: 0.33021775, b: 0.17663279, a: 0}
@@ -1915,7 +1916,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 327621891}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -2896,8 +2897,7 @@ MonoBehaviour:
   teamALabel: {fileID: 1479332958}
   teamBLabel: {fileID: 1715764801}
   deinePunkteLabel: {fileID: 824072994}
-  teamA: {fileID: 155933504}
-  teamB: {fileID: 1097502277}
+  teamManager: {fileID: 1309419590}
 --- !u!114 &447316951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6260,6 +6260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamNr: 2
   isReady: 0
+  teamScore: 0
   maxPlayerCount: 1
   minPlayerCount: 0
   teamColor: {r: 0.8976033, g: 0.97794116, b: 0.39549094, a: 1}

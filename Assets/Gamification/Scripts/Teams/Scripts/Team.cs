@@ -22,6 +22,14 @@ public class Team : MonoBehaviour
         get { return players; }
     }
 
+    public int teamScore = 0;
+
+    public int TeamScore
+    {
+        get { return teamScore; }
+        set { teamScore = value; }
+    }
+
     public int maxPlayerCount;
     public int minPlayerCount = 2;
 

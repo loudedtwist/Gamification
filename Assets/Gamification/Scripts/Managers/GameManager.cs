@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        GuiManager.Instance.ShowQuizResults();
         Debug.LogAssertion("SCORE PAGE ");
         Debug.LogAssertion("SCORE PAGE #");
         Debug.LogAssertion("SCORE PAGE ##");

@@ -4,23 +4,25 @@ using UnityEngine;
 public class Team : MonoBehaviour
 {
     private string teamName;
-    public int teamNr; 
 
-    [SerializeField]
-    private bool isReady; 
+    public int teamNr;
+
+    [SerializeField] private bool isReady;
+
     public bool IsReady
     {
         get { return maxPlayerCount == players.Count; }
-        private set{}
+        private set { }
     }
 
-    List<TeamPlayer> players; 
+    List<TeamPlayer> players;
+
     public List<TeamPlayer> Players
     {
         get { return players; }
     }
 
-    public int maxPlayerCount; 
+    public int maxPlayerCount;
     public int minPlayerCount = 2;
 
     public Color teamColor;
@@ -47,6 +49,4 @@ public class Team : MonoBehaviour
                 players.Remove(p);
         }
     }
-
-
 }

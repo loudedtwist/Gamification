@@ -5,8 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GuiManager : SimpleSingleton<GuiManager> { 
-    protected GuiManager () {} // guarantee this will be always a singleton only - can't use the constructor!
+public class GuiManager : SimpleSingleton<GuiManager>
+{
+    protected GuiManager()
+    {
+    } // guarantee this will be always a singleton only - can't use the constructor!
+
     public bool showSplashScreen;
     public GameObject[] pages;
     public LoadingManager loading;
@@ -14,64 +18,82 @@ public class GuiManager : SimpleSingleton<GuiManager> {
     public GameObject arCam;
     public GameObject guiLayer;
 
-    void Start(){
+    void Start()
+    {
         if (showSplashScreen)
         {
             ShowPage("SplashPage");
 
             Invoke("ShowLoginPage", 2.0f);
-        }else{
+        }
+        else
+        {
             ShowPage("LoginPage");
-        } 
+        }
     }
 
-
-    public void ShowSignUpAditionalInfoPage(){ 
-        MainThread.Call(ShowPage,"SignUpAdditionalInfo");
+    public void ShowQuizResults()
+    {
+        MainThread.Call(ShowPage, "QuizResults");
     }
 
-    public void ShowQuizPage(){ 
-        MainThread.Call(ShowPage,"QuizPage");
+    public void ShowSignUpAditionalInfoPage()
+    {
+        MainThread.Call(ShowPage, "SignUpAdditionalInfo");
     }
 
-    public void ShowLoginPage(){  
+    public void ShowQuizPage()
+    {
+        MainThread.Call(ShowPage, "QuizPage");
+    }
+
+    public void ShowLoginPage()
+    {
         MainThread.Call(ShowPage, "LoginPage");
-    }  
+    }
 
-    public void ShowUserHomePage(){  
+    public void ShowUserHomePage()
+    {
         MainThread.Call(ShowPage, "UserHomePage");
-    }   
+    }
 
-    public void ShowBattleGroundLobbyPage(){ 
+    public void ShowBattleGroundLobbyPage()
+    {
         MainThread.Call(ShowPage, "BattleGroundLobbyPage");
     }
 
-    public void ShowWaitingForUserPage(){
+    public void ShowWaitingForUserPage()
+    {
         MainThread.Call(ShowPage, "WaitingForUsersPage");
     }
 
-    public void ShowSplashPage(){
+    public void ShowSplashPage()
+    {
         MainThread.Call(ShowPage, "SplashPage");
     }
 
-    private void ShowPage(object pageNameObj){
+    private void ShowPage(object pageNameObj)
+    {
         var pageName = pageNameObj.ToString();
-        foreach(var page in pages){
+        foreach (var page in pages)
+        {
             if (page.name == pageName)
                 page.SetActive(true);
             else
                 page.SetActive(false);
-        }  
-        Debug.Log("GUI : SWITCHED TO " + pageName +" PAGE");
-    } 
+        }
+        Debug.Log("GUI : SWITCHED TO " + pageName + " PAGE");
+    }
 
-    // QR SCANNER 
-    public void ShowQrScannerPage(){
+    // QR SCANNER
+    public void ShowQrScannerPage()
+    {
         arCam.gameObject.SetActive(true);
         guiLayer.gameObject.SetActive(false);
     }
 
-    public void BackFromQrScannerPage(){
+    public void BackFromQrScannerPage()
+    {
         Debug.LogWarning("BACK PRESSED");
         arCam.gameObject.SetActive(false);
         guiLayer.gameObject.SetActive(true);
@@ -81,17 +103,22 @@ public class GuiManager : SimpleSingleton<GuiManager> {
     public Text log;
     public Text connectedUsers;
     public Text connectedUserList;
-    public void SetConnectedUsersLabel(int num){ 
-        connectedUsers.text = ""+num;
+
+    public void SetConnectedUsersLabel(int num)
+    {
+        connectedUsers.text = "" + num;
     }
-    public void WriteToLog(string text){
+
+    public void WriteToLog(string text)
+    {
         if (log == null)
             log = GameObject.FindGameObjectWithTag("DebugText").GetComponent<Text>();
         log.text = text;
     }
-    public void SetUserList(string users){ 
-        Debug.LogError("GUI MANAGER SET USER" + users);
-            connectedUserList.text = users; 
-    }
-} 
 
+    public void SetUserList(string users)
+    {
+        Debug.LogError("GUI MANAGER SET USER" + users);
+        connectedUserList.text = users;
+    }
+}

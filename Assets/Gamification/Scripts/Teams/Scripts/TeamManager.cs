@@ -43,9 +43,11 @@ public class TeamManager : MonoBehaviour
     { 
         SaveIfLocalPlayer(player);
         
-        return AssignToTeam(player);
+        var playerTeam = AssignToTeam(player);
 
         StartGameIfTeamAreReady();
+
+        return playerTeam;
     }
 
     void SaveIfLocalPlayer(TeamPlayer player)
@@ -58,19 +60,19 @@ public class TeamManager : MonoBehaviour
     {
         if (teamA.Players.Count > teamB.Players.Count)
         {
-            if (teamB.Players.Count == 0)
+            //if (teamB.Players.Count == 0)
                 teamB.Players.Add(player);
-            if (teamB.IsReady)
-                return null;
-            else
+            //if (teamB.IsReady)
+            //    return null;
+            //else
                 return teamB;
         }
         else
         {
             teamA.Players.Add(player);
-            if (teamA.IsReady)
-                return null;
-            else
+            //if (teamA.IsReady)
+            //    return null;
+            //else
                 return teamA;
         }
     }

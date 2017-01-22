@@ -1,13 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TeamPlayer : MonoBehaviour
+public class TeamPlayer : NetworkBehaviour
 { 
     public Team myTeam;
 
     [SerializeField]
-    private TeamManager teamManager; 
+    private Question questionManager;
+
+    [SerializeField]
+    private TeamManager teamManager;  
+   
+    [Command]                               
+    public void CmdAddAnswer(Question.Answer answer){  
+        questionManager.AddAnswer(answer); 
+    }
+
+    void OnEnable(){
+        GameObject myObj = GameObject.FindGameObjectWithTag("Question");
+        questionManager = myObj.GetComponent<Question>(); 
+    }
 
     void Start()
     {

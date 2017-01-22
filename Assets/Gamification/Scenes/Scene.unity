@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.61764705, g: 0.83823526, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1914,7 +1914,8 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 1014167431688992, guid: f51e139cdc8fd4b29a5bb91035d7605e, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -2464,6 +2465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421958217}
   - component: {fileID: 421958216}
+  - component: {fileID: 421958218}
   m_Layer: 0
   m_Name: NetworkSpawner
   m_TagString: Untagged
@@ -2516,6 +2518,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &421958218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421958215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f1d4ce058ee40aaa98c1ccfd84fd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1014167431688992, guid: f51e139cdc8fd4b29a5bb91035d7605e,
+    type: 2}
+  numberOfEnemies: 1
 --- !u!1 &426462697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3031,7 +3047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6271999, g: 0.9264706, b: 0.48367214, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7423,6 +7439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da23d21db72045d2b953ae6b5b26eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localPlayer: {fileID: 0}
   teamA: {fileID: 155933504}
   teamB: {fileID: 1097502277}
   gameManager: {fileID: 1618793167}
@@ -8827,7 +8844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6271999, g: 0.9264706, b: 0.48367214, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10289,7 +10306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.61764705, g: 0.83823526, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10547,7 +10564,9 @@ MonoBehaviour:
   - {fileID: 1521699837}
   - {fileID: 347323603}
   - {fileID: 111341453}
+  rightAnswerIndex: 0
   trueFalse: {fileID: 2082142494}
+  questionManager: {fileID: 0}
 --- !u!114 &1907599359
 MonoBehaviour:
   m_ObjectHideFlags: 0

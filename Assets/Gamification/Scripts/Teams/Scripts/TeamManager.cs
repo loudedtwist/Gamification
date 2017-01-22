@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 { 
+    public TeamPlayer localPlayer;
+
     public Team teamA;  
     public Team teamB;  
 
@@ -39,24 +41,45 @@ public class TeamManager : MonoBehaviour
 
     public Team SignUpPlayerToTeam(TeamPlayer player)
     { 
+        SaveIfLocalPlayer(player);
+        
+        return AssignToTeam(player);
+
+        StartGameIfTeamAreReady();
+    }
+
+    void SaveIfLocalPlayer(TeamPlayer player)
+    {
+        if (player.isLocalPlayer)
+            localPlayer = player;
+    }
+
+    Team AssignToTeam(TeamPlayer player)
+    {
         if (teamA.Players.Count > teamB.Players.Count)
         {
-            if(teamB.Players.Count == 0) 
-            teamB.Players.Add(player);
-            if (teamB.IsReady) return null;
-            else return teamB;
+            if (teamB.Players.Count == 0)
+                teamB.Players.Add(player);
+            if (teamB.IsReady)
+                return null;
+            else
+                return teamB;
         }
         else
         {
             teamA.Players.Add(player);
-            if (teamA.IsReady) return null;
-            else return teamA;
+            if (teamA.IsReady)
+                return null;
+            else
+                return teamA;
         }
+    }
 
+    void StartGameIfTeamAreReady()
+    {
         if (teamA.IsReady && teamB.IsReady)
             gameManager.StartGame();
     }
-
 
     public void UnsignPlayerFromTeam(TeamPlayer teamPlayer)
     {

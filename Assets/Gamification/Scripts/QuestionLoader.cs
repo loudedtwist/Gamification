@@ -19,8 +19,12 @@ public class QuestionLoader : MonoBehaviour {
     private int questionNr;
 
     public Image trueFalse;
+    public Question questionManager;
  
     void OnEnable () { 
+        GameObject myObj = GameObject.FindGameObjectWithTag("Question");
+        if (myObj != null) questionManager = myObj.GetComponent<Question>();
+
         rightAnswerIndex = -1;
         answers = new string[3];
         randoms = new int[3]; 
@@ -33,14 +37,9 @@ public class QuestionLoader : MonoBehaviour {
 	}
 
     void GetQuestionNr()
-    {
-        GameObject myObj = GameObject.FindGameObjectWithTag("Question");
-        if (myObj != null)
-        {
-            var question = myObj.GetComponent<Question>();
-            if (question == null) return;
-            questionNr = question.questionNr;
-        }
+    { 
+        if (questionManager == null) return;
+        questionNr = questionManager.questionNr; 
     }
 
     void FillWithRandomUniqueNumbers(int []arrayToFill){ 
@@ -94,10 +93,29 @@ public class QuestionLoader : MonoBehaviour {
     }
 
     public void OnAnswerClicked(int buttonIndex){
+        bool answerCorrect = false;
         Debug.LogAssertion("BUTTON INDEX: " + buttonIndex + " RIGHT ANSWER: " + rightAnswerIndex);
         if (buttonIndex == rightAnswerIndex)
+        {
             trueFalse.color = Color.green;
-        else 
+            answerCorrect = true;
+        }
+        else
+        { 
             trueFalse.color = Color.red;
+            answerCorrect = false;
+        }
+
+        var answer = new Question.Answer();
+        answer.team = teamManager.localPlayer.myTeam.teamNr;
+        answer.playerName = ParseUser.CurrentUser.Username;
+        answer.playerId = ParseUser.CurrentUser.ObjectId;
+        answer.time = System.DateTime.Now.ToShortTimeString();
+        answer.correct = answerCorrect;
+        //questionManager.AddAnswer(answer); 
+
+        teamManager.localPlayer.CmdAddAnswer(answer);
+
+        answerButtons.ChangeStateOfButtons(false);
     } 
 }

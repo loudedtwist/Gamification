@@ -45,6 +45,7 @@ public class TeamPlayer : NetworkBehaviour
 
     public override void OnStartLocalPlayer()
     {
+        Debug.Log("STARTED PLAYER!! ! ! ");
         GetPlayerScoreFromDb();
     }
 
@@ -68,10 +69,13 @@ public class TeamPlayer : NetworkBehaviour
             //TODO React to full room -> show htw map , 
             Debug.LogError("Can't join the lobby, the room is full");
         }
-    }
+    } 
 
-    private void OnDestroy()
-    {
+    public override void OnNetworkDestroy()
+    { 
+        Debug.LogAssertion("OnNetworkDestroy in TEAMPLAYER");
+        GuiManager.Instance.message.For(2).Show("Disconnected");
+        GuiManager.Instance.ShowUserHomePage();
         teamManager.UnsignPlayerFromTeam(this);
     }
 }

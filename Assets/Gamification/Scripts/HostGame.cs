@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Types;
 
 using UnityEngine.Networking.Match;
 
@@ -14,11 +15,18 @@ public class HostGame : MonoBehaviour {
     private string roomName;
     private NetworkManager networkManager;
 
+    private NetworkID netId;
+    private NodeID myNodeId;
+
     void OnEnable(){
         networkManager = NetworkManager.singleton;
-        if(networkManager.matchMaker == null ){
-            networkManager.StartMatchMaker();
+
+        if(networkManager.matchMaker != null){ 
+            DropPreviousMatch();
         }
+        if(networkManager.matchMaker == null ){ 
+            networkManager.StartMatchMaker();
+        } 
         networkManager.matchMaker.ListMatches(0,100,"",true,0,0, OnMatchList);
     }
 
@@ -26,18 +34,16 @@ public class HostGame : MonoBehaviour {
         roomName = name;
     }
 
+    void DropPreviousMatch()
+    {   
+        networkManager.matchMaker.DropConnection(netId, myNodeId, 0, OnDropConnection);
+    }
+
     public void CreateRoom(){
         if(roomName != "" && roomName != null){
             Debug.Log("Creating room: " + roomName + "with room for " + roomSize + " player"); 
             //create room 
-            if(networkManager == null){
-                Debug.LogError("NETWORK MANAGER IS NULL");
-                return;
-            }
-            if(networkManager.matchMaker == null){
-                Debug.LogError("NETWORK matchMaker IS NULL");
-                return;
-            }
+            CheckNetworkManager();
             networkManager.matchMaker.CreateMatch(roomName,roomSize,true,"","","",0,0, OnMatchCreate);
         }
     }
@@ -49,11 +55,30 @@ public class HostGame : MonoBehaviour {
         foreach(var match in matchList){
             //if found BattleGround join game like this
             //networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
+            CheckNetworkManager();
             networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, OnMatchJoined);
+
+            netId = match.networkId;
+
             message += match.name + "; ";
         }
        
         Debug.Log(message);
+    }
+
+    void CheckNetworkManager()
+    {
+        if (networkManager == null)
+        {
+            Debug.LogError("NETWORK MANAGER IS NULL");
+            return;
+        }
+        if (networkManager.matchMaker == null)
+        {
+            Debug.LogError("NETWORK matchMaker IS NULL");
+            networkManager.StartMatchMaker();
+            return;
+        }
     }
 
     public void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo){
@@ -63,6 +88,10 @@ public class HostGame : MonoBehaviour {
             MatchInfo hostInfo = matchInfo;
             NetworkServer.Listen(hostInfo, 7777); 
             networkManager.StartHost(hostInfo); 
+
+            netId = matchInfo.networkId;
+            myNodeId = matchInfo.nodeId;
+
             GuiManager.Instance.ShowWaitingForUserPage(); 
         }
         else
@@ -79,6 +108,8 @@ public class HostGame : MonoBehaviour {
         { 
             MatchInfo hostInfo = matchInfo;
             networkManager.StartClient(hostInfo);
+
+            myNodeId = matchInfo.nodeId;
  
             GuiManager.Instance.ShowWaitingForUserPage();
         }
@@ -88,4 +119,10 @@ public class HostGame : MonoBehaviour {
         }
     }
 	
+    void OnDropConnection(bool success, string extendedInfo)
+    {
+        string message = "prev droped: " + success; 
+        GuiManager.Instance.message.For(2).Show(message); 
+        NetworkManager.singleton.StopMatchMaker(); 
+    }
 }

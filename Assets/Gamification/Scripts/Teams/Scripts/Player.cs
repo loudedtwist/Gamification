@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using Parse;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     private int health;
 
@@ -11,11 +12,22 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        transform.name = ParseUser.CurrentUser.Username;
-        NickName = ParseUser.CurrentUser.Username;
+        if (isLocalPlayer)
+        {
+
+            string name = ParseUser.CurrentUser.Username; 
+            CmdSetUserName(name);
+        }
+    }
+
+    [Command]
+    void CmdSetUserName(string name){  
+        transform.name = "NetzPlayer:" + name;
+        nickName = name;
     }
 
     public string PlayerId { get; private set; }
 
-    public string NickName { get; set; }
+    [SyncVar]
+    public string nickName;
 }

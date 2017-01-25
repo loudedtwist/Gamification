@@ -50,7 +50,7 @@ public class Question : NetworkBehaviour
 
     void QuestionListChanged(SyncListInt.Operation op , int itemIndex){
         string message = "Quest list changed: " + op + " > " +questionsSynced[itemIndex] + "\n"; 
-        Debug.LogError(message);
+        //Debug.LogError(message);
     }  
 
     public void ChangeMyQuestion()

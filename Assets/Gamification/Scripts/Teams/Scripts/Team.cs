@@ -53,8 +53,9 @@ public class Team : MonoBehaviour
     {
         foreach (var p in players)
         {
-            if (p == player)
-                players.Remove(p);
+            if (p == player){
+                //players.Remove(p);
+            }
         }
     }
 }

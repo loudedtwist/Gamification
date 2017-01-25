@@ -7,6 +7,8 @@ using Parse;
 using Random = UnityEngine.Random;
 
 public class QuestionLoader : MonoBehaviour {
+    public int round = -1;
+
     [SerializeField]
     private TeamManager teamManager;
 
@@ -22,8 +24,11 @@ public class QuestionLoader : MonoBehaviour {
 
     public Image trueFalse;
     public Question questionManager;
+    public LoadingProgress progressBar;
  
     void OnEnable () { 
+        round++;
+
         GameObject myObj = GameObject.FindGameObjectWithTag("Question");
         if (myObj != null) questionManager = myObj.GetComponent<Question>();
 
@@ -40,8 +45,8 @@ public class QuestionLoader : MonoBehaviour {
 
     void GetQuestionNr()
     { 
-        if (questionManager == null) return;
-        questionNr = questionManager.questionNr; 
+        if (questionManager == null) return; 
+        questionNr = questionManager.questionsSynced[round];
     }
 
     void FillWithRandomUniqueNumbers(int []arrayToFill){ 
@@ -82,8 +87,8 @@ public class QuestionLoader : MonoBehaviour {
         catch (Exception e)
         {
             Debug.LogError(e);
-            StartCoroutine (GetQuestionAndUpdateUi());
-            throw ;
+            StartCoroutine (GetQuestionAndUpdateUi()); 
+            throw;
         }
 
         question = obj.Get<string>("question"); 
@@ -94,7 +99,7 @@ public class QuestionLoader : MonoBehaviour {
         answersFromServer[2] = obj.Get<string>("wrongAnswer2");
 
         RandomizeAnswerButtons(answersFromServer);  
-        UpdateQuestionUI(question, answers);
+        UpdateQuestionUI(question, answers); 
     }
 
     public void UpdateQuestionUI(string question, string []answers){ 
@@ -103,6 +108,7 @@ public class QuestionLoader : MonoBehaviour {
             answerLabels[i].text = answers[i];  
         } 
         answerButtons.ChangeStateOfButtons(true);
+        progressBar.StartLoadingAnimation();
     }
 
     public void OnAnswerClicked(int buttonIndex){

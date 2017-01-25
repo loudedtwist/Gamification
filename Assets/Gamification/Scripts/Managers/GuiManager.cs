@@ -58,6 +58,11 @@ public class GuiManager : SimpleSingleton<GuiManager>
         MainThread.Call(ShowPage, "UserHomePage");
     }
 
+    public void ShowUserStatsPage()
+    {
+        MainThread.Call(ShowPage, "UserStatsPage");
+    }
+
     public void ShowBattleGroundLobbyPage()
     {
         MainThread.Call(ShowPage, "BattleGroundLobbyPage");

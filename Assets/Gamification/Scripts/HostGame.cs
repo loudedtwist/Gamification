@@ -25,8 +25,8 @@ public class HostGame : MonoBehaviour {
             DropPreviousMatch();
         }
         if(networkManager.matchMaker == null ){ 
-            networkManager.StartMatchMaker();
-        } 
+            networkManager.StartMatchMaker(); 
+        }  
         networkManager.matchMaker.ListMatches(0,100,"",true,0,0, OnMatchList);
     }
 
@@ -90,7 +90,7 @@ public class HostGame : MonoBehaviour {
             networkManager.StartHost(hostInfo); 
 
             netId = matchInfo.networkId;
-            myNodeId = matchInfo.nodeId;
+            myNodeId = matchInfo.nodeId; 
 
             GuiManager.Instance.ShowWaitingForUserPage(); 
         }
@@ -124,5 +124,6 @@ public class HostGame : MonoBehaviour {
         string message = "prev droped: " + success; 
         GuiManager.Instance.message.For(2).Show(message); 
         NetworkManager.singleton.StopMatchMaker(); 
-    }
+        NetworkManager.singleton.StopClient();
+    } 
 }

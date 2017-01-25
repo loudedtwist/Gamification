@@ -25,6 +25,7 @@ public class QuestionLoader : MonoBehaviour {
     public Image trueFalse;
     public Question questionManager;
     public LoadingProgress progressBar;
+    public GameManager gameManager;
  
     void OnEnable () { 
         round++;
@@ -108,7 +109,7 @@ public class QuestionLoader : MonoBehaviour {
             answerLabels[i].text = answers[i];  
         } 
         answerButtons.ChangeStateOfButtons(true);
-        progressBar.StartLoadingAnimation();
+        progressBar.StartLoadingAnimation(gameManager.gameDuration);
     }
 
     public void OnAnswerClicked(int buttonIndex){

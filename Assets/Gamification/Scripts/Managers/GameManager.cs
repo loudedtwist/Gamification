@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public string readyText = "Game starts in ";
     public float secondsUntilStartVal = 3.0f;
     public float gameDuration = 20.0f;
+    public QuestionLoader questionLoader;
 
     private float secondsUntilStartCounter;
 

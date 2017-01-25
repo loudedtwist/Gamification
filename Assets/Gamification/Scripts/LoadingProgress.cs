@@ -19,9 +19,12 @@ public class LoadingProgress : MonoBehaviour {
         progressBarRect.sizeDelta = new Vector2(0.0f,hight); 
     } 
 
-    public void StartLoadingAnimation(){
+    public void StartLoadingAnimation(float loadingTime){
         width = progressRect.rect.width * 2 ;
-        StartCoroutine(AnimatePr(duration));
+        StartCoroutine(AnimatePr(loadingTime));
+    }
+    public void StartLoadingAnimation(){ 
+        StartLoadingAnimation(duration);
     }
 
     public IEnumerator AnimatePr(float loadingTime)

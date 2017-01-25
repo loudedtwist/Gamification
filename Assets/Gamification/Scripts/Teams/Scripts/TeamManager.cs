@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class TeamManager : MonoBehaviour
 {
@@ -73,11 +74,16 @@ public class TeamManager : MonoBehaviour
     void StartGameIfTeamsAreReady()
     {
         if (teamA.IsReady && teamB.IsReady)
+        {
             gameManager.StartGame();
+            NetworkManager.singleton.maxConnections = NetworkManager.singleton.numPlayers;
+        }
     }
 
     public void UnsignPlayerFromTeam(TeamPlayer teamPlayer)
     {
         teamPlayer.myTeam.DeletePlayerFromTeam(teamPlayer);
     }
+
+
 }

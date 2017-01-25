@@ -9,7 +9,8 @@ public class GuiManager : SimpleSingleton<GuiManager>
 {
     protected GuiManager()
     {
-    } // guarantee this will be always a singleton only - can't use the constructor!
+    }
+    // guarantee this will be always a singleton only - can't use the constructor!
 
     public bool showSplashScreen;
     public GameObject[] pages;
@@ -75,12 +76,17 @@ public class GuiManager : SimpleSingleton<GuiManager>
     private void ShowPage(object pageNameObj)
     {
         var pageName = pageNameObj.ToString();
+        GameObject pageToShow = null ;
+
         foreach (var page in pages)
         {
-            if (page.name == pageName)
-                page.SetActive(true);
-            else
-                page.SetActive(false);
+            if (page.name == pageName) pageToShow = page; 
+            page.SetActive(false);
+        } 
+
+        if (pageToShow != null)
+        {
+            pageToShow.SetActive(true);
         }
         Debug.Log("GUI : SWITCHED TO " + pageName + " PAGE");
     }

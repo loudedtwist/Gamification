@@ -10,16 +10,26 @@ public class GameManager : MonoBehaviour
     public string readyText = "Game starts in ";
     public float secondsUntilStartVal = 3.0f;
     public float gameDuration = 20.0f;
+    //change rounds in NetworkObject index generator
+    public int roundsNumber = 6;
+    [SerializeField]
+    private int roundsRemains;
     public QuestionLoader questionLoader;
 
-    private float secondsUntilStartCounter;
+    private float secondsUntilStartCounter; 
+
+    void Start(){
+        roundsRemains = roundsNumber; 
+    }
 
     public void StartGame()
     {
-        ShowBanner(true);
         secondsUntilStartCounter = secondsUntilStartVal;
+        ShowBanner(true);
+
         Invoke("ChangeToQuizPage", secondsUntilStartVal + 1.0f);
-        Invoke("FinishGame", secondsUntilStartVal + 1.0f + gameDuration);
+        InvokeRepeating("StartRound", secondsUntilStartVal + 1.0f, gameDuration);
+        Invoke("FinishGame", secondsUntilStartVal + 1.0f + gameDuration * roundsNumber);
         InvokeRepeating("DecrementTimeToStart", 0.0f, 1.0f);
     }
 
@@ -46,10 +56,25 @@ public class GameManager : MonoBehaviour
         GuiManager.Instance.ShowQuizResults();
         Debug.LogAssertion("SCORE PAGE ");
         Debug.LogAssertion("SCORE PAGE #");
-        Debug.LogAssertion("SCORE PAGE ##");
-        Debug.LogAssertion("SCORE PAGE ###");
-        Debug.LogAssertion("SCORE PAGE ####");
+        Debug.LogAssertion("SCORE PAGE ##"); 
         //go to score page
+    }
+
+    public void StartRound()
+    {
+        --roundsRemains;
+
+        Debug.LogAssertion("##############");
+        Debug.LogAssertion("ROUND: " + (roundsNumber - roundsRemains + 1) + " #");
+        Debug.LogAssertion("ROUNDS REMAINS: " +roundsRemains + " #");
+        Debug.LogAssertion("############## ");
+        GuiManager.Instance.ShowQuizPage();  
+
+        if (roundsRemains < 1)
+        {
+            Debug.LogAssertion("STOPPING CORUTION");
+            CancelInvoke("StartRound");
+        }
     }
 
     void ShowBanner(bool state)

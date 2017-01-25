@@ -27,25 +27,15 @@ public class Question : NetworkBehaviour
         ChangeMyQuestion();
         answers.Callback = AnswerListChanged; 
         questionsSynced.Callback = QuestionListChanged;
-    }
-
-
-    public string toStringAnswer(Answer a){
-        return "{ "+ "\n"
-            +"PId: "+a.playerId + "\n"
-            +"PName: "+a.playerName + "\n"
-            +"Time: "+a.time + "\n"
-            +"AnswerCorrect: "+a.correct + "\n"
-            +"team: "+a.team + "\n"
-            +"}\n";
-    }
+    } 
 
     void AnswerListChanged(AnswersSync.Operation op , int itemIndex){
         string message = "Answer list changed: " + op + "\n";
         foreach(var a in answers){
-            message += toStringAnswer(a) + "\n";
+            message += a.toString() + "\n";
         }
-        Debug.LogError(message);
+        string shortMessage = "Answer list changed: " + op +"\n";
+        Debug.LogError(shortMessage);
     } 
 
     void QuestionListChanged(SyncListInt.Operation op , int itemIndex){

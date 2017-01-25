@@ -38,4 +38,14 @@ public static class ExtensionMethods
             array[i] = num;
         } 
     }
+    public static String toString(this Question.Answer a)
+    { 
+            return "{ "+ "\n"
+                +"PId: "+a.playerId + "\n"
+                +"PName: "+a.playerName + "\n"
+                +"Time: "+a.time + "\n"
+                +"AnswerCorrect: "+a.correct + "\n"
+                +"team: "+a.team + "\n"
+                +"}\n"; 
+    }
 } 

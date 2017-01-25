@@ -9718,7 +9718,10 @@ MonoBehaviour:
   readyGoBanner: {fileID: 1574600874}
   readyText: 
   secondsUntilStartVal: 3
-  gameDuration: 20
+  gameDuration: 10
+  roundsNumber: 3
+  roundsRemains: 0
+  questionLoader: {fileID: 1907599358}
 --- !u!4 &1618793168
 Transform:
   m_ObjectHideFlags: 0
@@ -11465,6 +11468,7 @@ MonoBehaviour:
   trueFalse: {fileID: 2082142494}
   questionManager: {fileID: 0}
   progressBar: {fileID: 816144618}
+  gameManager: {fileID: 1618793167}
 --- !u!114 &1907599359
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,6 +26,10 @@ public class QuestionLoader : MonoBehaviour {
     public Question questionManager;
     public LoadingProgress progressBar;
     public GameManager gameManager;
+
+    public Color trueAnswerColor;
+    public Color falseAnswerColor;
+    public Color falseAnswerStartColor;
  
     void OnEnable () { 
         round++;
@@ -39,8 +43,9 @@ public class QuestionLoader : MonoBehaviour {
 
         GetQuestionNr();
         FillWithRandomUniqueNumbers(randoms);
-        answerButtons.ChangeStateOfButtons(false);  
+        answerButtons.Interactable(false);  
         StartCoroutine (GetQuestionAndUpdateUi()); 
+        progressBar.StartLoadingAnimation(gameManager.gameDuration);
         //execution of code after last line will continue immediately
 	}
 
@@ -99,6 +104,7 @@ public class QuestionLoader : MonoBehaviour {
         answersFromServer[1] = obj.Get<string>("wrongAnswer1");
         answersFromServer[2] = obj.Get<string>("wrongAnswer2");
 
+        trueFalse.color = falseAnswerStartColor;
         RandomizeAnswerButtons(answersFromServer);  
         UpdateQuestionUI(question, answers); 
     }
@@ -108,8 +114,7 @@ public class QuestionLoader : MonoBehaviour {
         for(int i = 0; i < 3 ; i++){
             answerLabels[i].text = answers[i];  
         } 
-        answerButtons.ChangeStateOfButtons(true);
-        progressBar.StartLoadingAnimation(gameManager.gameDuration);
+        answerButtons.Interactable(true);
     }
 
     public void OnAnswerClicked(int buttonIndex){
@@ -119,12 +124,12 @@ public class QuestionLoader : MonoBehaviour {
         if (buttonIndex == rightAnswerIndex)
         {
             teamManager.localPlayer.IncrementScore();
-            trueFalse.color = Color.green;
+            trueFalse.color = trueAnswerColor;
             answerCorrect = true;
         }
         else
         { 
-            trueFalse.color = Color.red;
+            trueFalse.color = falseAnswerColor;
             answerCorrect = false;
         }
 
@@ -138,6 +143,6 @@ public class QuestionLoader : MonoBehaviour {
 
         teamManager.localPlayer.CmdAddAnswer(answer);
 
-        answerButtons.ChangeStateOfButtons(false);
+        answerButtons.Interactable(false);
     } 
 }

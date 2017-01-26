@@ -3306,7 +3306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8955788a4cd4c49a68179912d517e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showSplashScreen: 0
+  showSplashScreen: 1
   pages:
   - {fileID: 144052480}
   - {fileID: 1864162579}
@@ -12041,7 +12041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1907599358
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -75,8 +75,7 @@ public class TeamManager : MonoBehaviour
     {
         if (teamA.IsReady && teamB.IsReady)
         {
-            gameManager.StartGame();
-            NetworkManager.singleton.maxConnections = NetworkManager.singleton.numPlayers;
+            gameManager.StartGame(); 
         }
     }
 

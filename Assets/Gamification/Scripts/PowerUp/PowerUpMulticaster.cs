@@ -21,6 +21,7 @@ public class Power
     {
         this.type = PowerTypes.Initial;
     }
+
     public Power(PowerTypes type)
     {
         this.type = type;
@@ -31,7 +32,6 @@ public class Mirror : Power
 {
     public Mirror() : base(PowerTypes.Mirror)
     {
-
     }
 }
 
@@ -97,7 +97,19 @@ public class PowerUpMulticaster : NetworkBehaviour
         Debug.LogError("POWER UP " + powerUp.GetType().ToString() + " IS CLIENT: " + isClient);
         if (!isLocalPlayer) return;
         //GuiManager.Instance.message.For(3).Show("YOU WERE FUCKED GUYS");
-        if (powerUp.type == PowerTypes.Mirror)
-            GuiPowerUpManager.Instance.SpiegelText();
+        switch (powerUp.type)
+        {
+            case PowerTypes.Mirror:
+                GuiPowerUpManager.Instance.SpiegelText();
+                break;
+            case PowerTypes.Boom:
+                break;
+            case PowerTypes.Noiz:
+                break;
+            case PowerTypes.Initial:
+                break;
+            default:
+                break;
+        }
     }
 }

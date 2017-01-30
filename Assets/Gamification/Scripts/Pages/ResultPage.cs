@@ -32,16 +32,47 @@ public class ResultPage : MonoBehaviour
 
         foreach (var answer in questionManager.answers)
         {
-            if (answer.team == 1 && answer.correct)
+            if (answer.team == teamManager.teamA.teamNr && answer.correct)
                 scoreA++;
-            if (answer.team == 2 && answer.correct)
+            if (answer.team == teamManager.teamB.teamNr && answer.correct)
                 scoreB++;
         }
 
+        string team1Text = teamManager.localPlayer.myTeam.teamNr == teamManager.teamA.teamNr ? "My Team" : "Gegner-Team";
+        teamALabel.text = team1Text + ": " + scoreA + " Punkte";
+        string team2Text = teamManager.localPlayer.myTeam.teamNr == teamManager.teamB.teamNr ? "My Team" : "Gegner-Team";
+        teamBLabel.text = team2Text + ": " + scoreB + " Punkte";
 
-        teamALabel.text += scoreA + " Punkte";
-        teamBLabel.text += scoreB + " punkte";
+        Team winTeam = DecideWhoWins(scoreA, scoreB);
+        GiveRewardIfNeeded(winTeam);
+
         deinePunkteLabel.text +=  teamManager.localPlayer.myScore;
+    }
+
+    private void GiveRewardIfNeeded(Team team)
+    {
+        if (team == null)
+        {
+            Debug.LogError("WIN TEEM WAS NULL");
+            return;
+        }
+        foreach (var teamPlayer in team.Players)
+        {
+            teamPlayer.AddRandomPowerUp();
+        }
+    }
+
+    private Team DecideWhoWins(int scoreA, int scoreB)
+    {
+        if (scoreA > scoreB)
+        {
+            return teamManager.teamA;
+        }
+        else if (scoreB > scoreA)
+        {
+            return teamManager.teamB;
+        }
+        else return null;
     }
 
     private int getCalculatedScoreFromTeam(Team team)

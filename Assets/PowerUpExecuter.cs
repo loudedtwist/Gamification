@@ -6,7 +6,6 @@ public class PowerUpExecuter : MonoBehaviour {
 
     public TeamManager teams;
 
-
     void Start()
     {
         //Do();
@@ -14,6 +13,10 @@ public class PowerUpExecuter : MonoBehaviour {
 
     public void Do()
     {
-        teams.localPlayer.GetComponent<PowerUpMulticaster>().CmdUsePowerUp(new Mirror());
+        teams.localPlayer.DecrementPowerUp(PowerTypes.Mirror, () =>
+        {
+            teams.localPlayer.GetComponent<PowerUpMulticaster>().CmdUsePowerUp(new Mirror());
+        });
     }
+
 }

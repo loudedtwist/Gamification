@@ -21,6 +21,11 @@ public class AdditionalInfo : MonoBehaviour {
         user["sNummer"] = sNummer.text;
         user["faculty"] = faculty.captionText.text;
         user["score"] = 0;
+
+        user["mirrors"] = 0;
+        user["noiz"] = 0;
+        user["booms"] = 0;
+
         user.SaveAsync().ContinueWith(task => {
             if(task.IsCompleted && (task.IsFaulted || task.IsCanceled)){
                 Debug.LogError("Cant save additional user data");

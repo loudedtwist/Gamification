@@ -33,7 +33,7 @@ public class GuiManager : SimpleSingleton<GuiManager>
         }
     }
 
-    public void ShowQuizResults()
+    public void ShowQuizResultsPage()
     {
         MainThread.Call(ShowPage, "QuizResults");
     }

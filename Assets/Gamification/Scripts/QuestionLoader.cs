@@ -142,6 +142,8 @@ public class QuestionLoader : MonoBehaviour {
             answerCorrect = false;
         }
 
+        answerButtons[buttonIndex].GetComponent<EWZButtonState>().AnswerHit(answerCorrect);
+
         var answer = new Question.Answer();
         answer.team = teamManager.localPlayer.myTeam.teamNr;
         answer.playerName = ParseUser.CurrentUser.Username;

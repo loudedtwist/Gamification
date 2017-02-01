@@ -14,6 +14,7 @@ public class GuiPowerUpManager : SimpleSingleton<GuiPowerUpManager>
     // guarantee this will be always a singleton only - can't use the constructor!
 
     public Text question;
+    public Text dirtLabel;
 
 
 
@@ -25,7 +26,11 @@ public class GuiPowerUpManager : SimpleSingleton<GuiPowerUpManager>
 
     public void SetMirrorAnzahlText(int anz)
     {
-        mirrorAnzahl.text = "Spiegel: " + anz;
+        mirrorAnzahl.text = ""+anz;
+    }
+    public void SetDirtAnzahlText(int anz)
+    {
+        dirtLabel.text = ""+anz;
     }
 
 

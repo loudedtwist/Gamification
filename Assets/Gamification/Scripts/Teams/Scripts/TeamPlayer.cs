@@ -27,8 +27,7 @@ public class TeamPlayer : NetworkBehaviour
             //TODO React to full room -> show htw map ,
             Debug.LogError("Can't join the lobby, the room is full");
         }
-
-        GuiPowerUpManager.Instance.SetMirrorAnzahlText(CurrentMirrors());
+        UpdateUi();
     }
 
     void OnEnable()
@@ -210,6 +209,7 @@ public class TeamPlayer : NetworkBehaviour
     private void UpdateUi()
     {
         GuiPowerUpManager.Instance.SetMirrorAnzahlText(CurrentMirrors());
+        GuiPowerUpManager.Instance.SetDirtAnzahlText(CurrentNoiz());
     }
 
 }

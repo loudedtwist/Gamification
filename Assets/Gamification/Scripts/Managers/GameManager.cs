@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     public float gameDuration = 20.0f;
 
+    public TeamManager teams;
+    public HostGame gameConnection;
+
     //change rounds in NetworkObject index generator
     public int roundsNumber = 6;
 
@@ -20,16 +23,13 @@ public class GameManager : MonoBehaviour
 
     private float secondsUntilStartCounter;
 
-    void Start()
-    {
-        roundsRemains = roundsNumber;
-    }
-
     public void StartGame()
     {
+        roundsRemains = roundsNumber;
         secondsUntilStartCounter = secondsUntilStartVal;
         ShowBanner(true);
 
+        questionLoader.NewGame();
         Invoke("ChangeToQuizPage", secondsUntilStartVal + 1.0f);
         InvokeRepeating("StartRound", secondsUntilStartVal + 1.0f, gameDuration);
         Invoke("FinishGame", secondsUntilStartVal + 1.0f + gameDuration * roundsNumber);
@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        gameConnection.DropPreviousMatch();
         GuiManager.Instance.ShowQuizResultsPage();
-
         //go to score page
     }
 

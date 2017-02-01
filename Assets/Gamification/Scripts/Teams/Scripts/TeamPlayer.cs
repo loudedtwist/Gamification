@@ -13,8 +13,6 @@ public class TeamPlayer : NetworkBehaviour
 
     public int myScore;
 
-    private int currentMirrors, currentBooms, currentNoizes;
-
     [SerializeField] private Question questionManager;
 
     [SerializeField] private TeamManager teamManager;
@@ -30,6 +28,7 @@ public class TeamPlayer : NetworkBehaviour
             Debug.LogError("Can't join the lobby, the room is full");
         }
 
+        GuiPowerUpManager.Instance.SetMirrorAnzahlText(CurrentMirrors());
     }
 
     void OnEnable()
@@ -137,7 +136,8 @@ public class TeamPlayer : NetworkBehaviour
         {
             case PowerTypes.Mirror:
                 var currentMirrors = CurrentMirrors();
-                if (currentMirrors == 0) return;
+                Debug.LogError("ANZAHL VON MIRRORS: " + currentMirrors);
+                //if (currentMirrors == 0) return;
                 user["mirrors"] = currentMirrors - 1;
                 break;
             case PowerTypes.Noiz:
@@ -160,12 +160,29 @@ public class TeamPlayer : NetworkBehaviour
                 {
                     GuiManager.Instance.message.For(2).ShowOnMainThread("Cant add -1 powerUp");
                     Debug.LogError("Cant substract powerup");
+
+                    GuiManager.Instance.loading.HideOnMainThread();
+                    // Errors from Parse Cloud and network interactions
+                    using (IEnumerator<System.Exception> enumerator = task.Exception.InnerExceptions.GetEnumerator())
+                    {
+                        if (enumerator.MoveNext())
+                        {
+                            ParseException error = (ParseException)enumerator.Current;
+                            GuiManager.Instance.message.For(2).ShowOnMainThread(error.Message);
+                            Debug.LogError("ERROR: " + error.Message);
+                        }
+                    }
                 }
                 else
                 {
-                    doIfHasPower.Invoke();
+                    MainThread.Call(() =>
+                    {
+                        doIfHasPower.Invoke();
+                    });
+
                     GuiManager.Instance.message.For(2).ShowOnMainThread("PowerUp -1 :)");
                     Debug.LogError("Substacted power up");
+                    UpdateUi();
                 }
             });
     }
@@ -184,4 +201,10 @@ public class TeamPlayer : NetworkBehaviour
     {
         return user.Get<int>("mirrors");
     }
+
+    private void UpdateUi()
+    {
+        GuiPowerUpManager.Instance.SetMirrorAnzahlText(CurrentMirrors());
+    }
+
 }

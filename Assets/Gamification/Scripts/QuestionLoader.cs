@@ -30,7 +30,12 @@ public class QuestionLoader : MonoBehaviour {
     public Color trueAnswerColor;
     public Color falseAnswerColor;
     public Color falseAnswerStartColor;
- 
+
+    public void NewGame()
+    {
+        round = -1;
+    }
+
     void OnEnable () { 
         round++;
 
@@ -50,8 +55,12 @@ public class QuestionLoader : MonoBehaviour {
 	}
 
     void GetQuestionNr()
-    { 
-        if (questionManager == null) return; 
+    {
+        if (questionManager == null)
+        {
+            Debug.LogError("QuestionManager is null");
+            return;
+        }
         questionNr = questionManager.questionsSynced[round];
     }
 

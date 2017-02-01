@@ -3,81 +3,74 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
+
 using UnityEngine.Networking.Match;
 
-public class HostGame : MonoBehaviour
-{
+public class HostGameByNamed : MonoBehaviour {
+
+
     public PlayerGui playerGui;
 
-    [SerializeField] private uint roomSize = 6;
+    [SerializeField]
+    private uint roomSize = 6;
     private string roomName;
     private NetworkManager networkManager;
 
     private NetworkID netId;
     private NodeID myNodeId;
 
-    [SerializeField] private TeamManager teamManager;
+    [SerializeField]
+    private TeamManager teamManager;
 
-    void OnEnable()
-    {
+    void OnEnable(){
         networkManager = NetworkManager.singleton;
 
-        if (networkManager.matchMaker != null)
-        {
+        if(networkManager.matchMaker != null){
             teamManager.ClearTeams();
             DropPreviousMatch();
         }
-        if (networkManager.matchMaker == null)
-        {
+        if(networkManager.matchMaker == null ){
             networkManager.StartMatchMaker();
         }
-        networkManager.matchMaker.ListMatches(0, 100, "", true, 0, 0, OnMatchList);
     }
 
-    public void SetRoomName(string name)
-    {
+    public void SetRoomName(string name){
         roomName = name;
     }
 
     public void DropPreviousMatch()
     {
-        if (networkManager != null && networkManager.matchMaker != null)
-        {
-            networkManager.StopHost();
-            networkManager.StartClient();
-            networkManager.matchMaker.DropConnection(netId, myNodeId, 0, OnDropConnection);
-        }
+        networkManager.matchMaker.DropConnection(netId, myNodeId, 0, OnDropConnection);
     }
 
-    public void CreateRoom()
-    {
-        if (!string.IsNullOrEmpty(roomName))
-        {
-            Debug.Log("Creating room: " + roomName + "with room for " + roomSize + " player");
+    public void CreateOrConnectToRoom(){
+        if(roomName != "" && roomName != null){
             //create room
             CheckNetworkManager();
-            networkManager.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, OnMatchCreate);
+            networkManager.matchMaker.ListMatches(0,100,"",true,0,0, OnMatchList);
         }
     }
 
     //Die funktion bekommt eine liste von room. Wir suchen unseren Raum in der Liste.
     //Wenn es denn noch nicht gibt erstellen wir selbst einen mit dem namen den wir von QR gelesen haben;
-    public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList)
-    {
+    public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList){
         string message = "Success: " + success + "; Ext Info: " + extendedInfo + "; MatchList: ";
-        foreach (var match in matchList)
-        {
+        foreach(var match in matchList){
             //if found BattleGround join game like this
-            //networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
             CheckNetworkManager();
-            networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, OnMatchJoined);
-
-            netId = match.networkId;
-
-            message += match.name + "; ";
+            if (match.name == roomName)
+            {
+                networkManager.matchMaker.JoinMatch(match.networkId, "", "", "", 0, 0, OnMatchJoined);
+                netId = match.networkId;
+                Debug.Log(message);
+                message += match.name + "; ";
+                return;
+            }
         }
 
-        Debug.Log(message);
+        //romm with that  name nor found
+        networkManager.matchMaker.CreateMatch(roomName,roomSize,true,"","","",0,0, OnMatchCreate);
+        Debug.Log("Creating room: " + roomName + "with room for " + roomSize + " player");
     }
 
     void CheckNetworkManager()
@@ -95,9 +88,8 @@ public class HostGame : MonoBehaviour
         }
     }
 
-    public void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
-    {
-        Debug.Log("CREATED room: " + success + "; Info:" + matchInfo.ToString());
+    public void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo){
+        Debug.Log("CREATED room: " + success + "; Info:" + matchInfo.ToString() );
         if (success)
         {
             MatchInfo hostInfo = matchInfo;
@@ -117,10 +109,8 @@ public class HostGame : MonoBehaviour
 
     //Die funktion bekommt eine liste von room. Wir suchen unseren Raum in der Liste.
     //Wenn es denn noch nicht gibt erstellen wir selbst einen mit dem namen den wir von QR gelesen haben;
-    public void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
-    {
-        Debug.Log("JOINED " + success + " . " + extendedInfo + "; Info: " + matchInfo.address + ", " +
-                  matchInfo.ToString());
+    public void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo){
+        Debug.Log("JOINED "+ success + " . " + extendedInfo + "; Info: " + matchInfo.address + ", " + matchInfo.ToString());
         if (success)
         {
             MatchInfo hostInfo = matchInfo;

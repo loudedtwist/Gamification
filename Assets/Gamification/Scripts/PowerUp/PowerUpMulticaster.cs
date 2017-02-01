@@ -55,8 +55,6 @@ public class PowerUpMulticaster : NetworkBehaviour
 
     public TeamManager teamManager;
 
-    public Text question;
-
     void Start()
     {
         teamManager = GameObject.FindGameObjectWithTag("TeamManagerTag").GetComponent<TeamManager>();
@@ -67,15 +65,6 @@ public class PowerUpMulticaster : NetworkBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        question = GameObject.FindGameObjectWithTag("ActualQuestionLabel").GetComponent<Text>();
-        if (question == null)
-        {
-            Debug.LogError("Coulnd't find the ActualQuestionLabel-Object");
-            //GuiManager.Instance.message.For(3).Show("");
-        }
-    }
 
     [Command]
     public void CmdUsePowerUp(Power power)
@@ -96,7 +85,7 @@ public class PowerUpMulticaster : NetworkBehaviour
     {
         Debug.LogError("POWER UP " + powerUp.GetType().ToString() + " IS CLIENT: " + isClient);
         if (!isLocalPlayer) return;
-        //GuiManager.Instance.message.For(3).Show("YOU WERE FUCKED GUYS");
+        GuiManager.Instance.message.For(3).Show("YOU WERE FOOLED GUYS");
         switch (powerUp.type)
         {
             case PowerTypes.Mirror:

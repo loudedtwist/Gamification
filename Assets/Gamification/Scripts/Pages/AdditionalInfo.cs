@@ -22,9 +22,9 @@ public class AdditionalInfo : MonoBehaviour {
         user["faculty"] = faculty.captionText.text;
         user["score"] = 0;
 
-        user["mirrors"] = 0;
-        user["noiz"] = 0;
-        user["booms"] = 0;
+        user["mirrors"] = 50;
+        user["noiz"] = 2;
+        user["booms"] = 2;
 
         user.SaveAsync().ContinueWith(task => {
             if(task.IsCompleted && (task.IsFaulted || task.IsCanceled)){

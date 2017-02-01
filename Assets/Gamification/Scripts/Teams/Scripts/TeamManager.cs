@@ -85,4 +85,10 @@ public class TeamManager : MonoBehaviour
     }
 
 
+    public void ClearTeams()
+    {
+        teamA.Players.Clear();
+        teamB.Players.Clear();
+    }
+
 }

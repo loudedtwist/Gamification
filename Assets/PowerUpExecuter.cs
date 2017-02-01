@@ -15,6 +15,7 @@ public class PowerUpExecuter : MonoBehaviour {
     {
         teams.localPlayer.DecrementPowerUp(PowerTypes.Mirror, () =>
         {
+            Debug.LogError("HITTING YOU WITH MIRROR");
             teams.localPlayer.GetComponent<PowerUpMulticaster>().CmdUsePowerUp(new Mirror());
         });
     }

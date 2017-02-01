@@ -46,7 +46,10 @@ public class ResultPage : MonoBehaviour
         Team winTeam = DecideWhoWins(scoreA, scoreB);
         GiveRewardIfNeeded(winTeam);
 
-        deinePunkteLabel.text +=  teamManager.localPlayer.myScore;
+        deinePunkteLabel.text = "Deine Punkte: " + teamManager.localPlayer.myScore;
+
+
+        teamManager.ClearTeams();
     }
 
     private void GiveRewardIfNeeded(Team team)

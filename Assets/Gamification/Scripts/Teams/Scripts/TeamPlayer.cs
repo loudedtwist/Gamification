@@ -142,7 +142,7 @@ public class TeamPlayer : NetworkBehaviour
                 break;
             case PowerTypes.Noiz:
                 var currentNoiz = CurrentNoiz();
-                if (currentNoiz == 0) return;
+                //if (currentNoiz == 0) return;
                 user["noiz"] = currentNoiz - 1;
                 break;
             case PowerTypes.Boom:
@@ -152,6 +152,11 @@ public class TeamPlayer : NetworkBehaviour
                 break;
             default:
                 break;
+        }
+        if (!user.IsAuthenticated )
+        {
+            GuiManager.Instance.message.For(2).Show("NOT AUTHENTICATED");
+            Debug.LogError("ERROR: " + "NOT AUTHENTICATED");
         }
         user.SaveAsync()
             .ContinueWith(task =>
@@ -169,7 +174,7 @@ public class TeamPlayer : NetworkBehaviour
                         {
                             ParseException error = (ParseException)enumerator.Current;
                             GuiManager.Instance.message.For(2).ShowOnMainThread(error.Message);
-                            Debug.LogError("ERROR: " + error.Message);
+                            Debug.LogError("ERROR: " + error.Message + " " + error.Code);
                         }
                     }
                 }
@@ -178,11 +183,11 @@ public class TeamPlayer : NetworkBehaviour
                     MainThread.Call(() =>
                     {
                         doIfHasPower.Invoke();
+                        UpdateUi();
                     });
 
                     GuiManager.Instance.message.For(2).ShowOnMainThread("PowerUp -1 :)");
                     Debug.LogError("Substacted power up");
-                    UpdateUi();
                 }
             });
     }

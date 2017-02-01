@@ -94,6 +94,7 @@ public class PowerUpMulticaster : NetworkBehaviour
             case PowerTypes.Boom:
                 break;
             case PowerTypes.Noiz:
+                GuiPowerUpManager.Instance.NoizTheScreen();
                 break;
             case PowerTypes.Initial:
                 break;

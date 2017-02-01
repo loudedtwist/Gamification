@@ -15,8 +15,13 @@ public class GuiPowerUpManager : SimpleSingleton<GuiPowerUpManager>
 
     public Text question;
 
+
+
     [SerializeField]
     private Text mirrorAnzahl;
+
+    [SerializeField]
+    private GameObject dirtLayer;
 
     public void SetMirrorAnzahlText(int anz)
     {
@@ -35,5 +40,16 @@ public class GuiPowerUpManager : SimpleSingleton<GuiPowerUpManager>
         char[] charArray = s.ToCharArray();
         Array.Reverse( charArray );
         return new string( charArray );
+    }
+
+    public void NoizTheScreen()
+    {
+        dirtLayer.SetActive(true);
+        Invoke("UndoNoiz", 5.0f);
+    }
+
+    private void UndoNoiz()
+    {
+        dirtLayer.SetActive(false);
     }
 }

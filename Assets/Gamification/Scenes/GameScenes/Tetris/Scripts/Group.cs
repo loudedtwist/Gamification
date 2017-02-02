@@ -1,63 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Group : MonoBehaviour {
 
 
 	// Time since last gravity tick
 	float lastFall = 0;
+	Vector2 swipeDelta = new Vector2();
+	float timeDelta = 0;
 
 	// Use this for initialization
 	void Start () {
 		// Default position not valid? Then it's game over
 		if (!isValidGridPos()) {
-			Debug.Log("GAME OVER");
+			GameObject.Find ("debugText").GetComponent<Text> ().text = "GAME OVER";
 			Destroy(gameObject);
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		int touchSum = 0;
+		Touch[] myTouches = Input.touches;
+		for (int i = 0; i < Input.touchCount; i++) {
+			Vector2 v = myTouches[i].position;
+			if (myTouches [i].phase == TouchPhase.Began) {
+				swipeDelta = v;
+				timeDelta = Time.time;
+			}
+			else if (myTouches [i].phase == TouchPhase.Ended) {
+				swipeDelta -= v;
+				timeDelta -= Time.time;
+				if (timeDelta > -0.5) {
+					if (swipeDelta.x > 100)
+						moveLeft ();
+					else if (swipeDelta.x < -100)
+						moveRight ();
+					else
+						rotateLeft ();
+				}
+			}
+			/*
+			else if (v.x < (Screen.width / 2) && myTouches[i].phase == TouchPhase.Ended)
+				moveLeft();
+			else if (v.x > (Screen.width / 2) && myTouches[i].phase == TouchPhase.Ended)
+				moveRight();
+			*/
+
+		}
+			
 		// Move Left
 		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			// Modify position
-			transform.position += new Vector3 (-1, 0, 0);
-
-			// See if valid
-			if (isValidGridPos ())
-				// Its valid. Update grid.
-				updateGrid ();
-			else
-				// Its not valid. revert.
-				transform.position += new Vector3 (1, 0, 0);
+			moveLeft ();
 		}
 
 		// Move Right
 		else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			// Modify position
-			transform.position += new Vector3 (1, 0, 0);
-
-			// See if valid
-			if (isValidGridPos ())
-				// It's valid. Update grid.
-				updateGrid ();
-			else
-				// It's not valid. revert.
-				transform.position += new Vector3 (-1, 0, 0);
+			moveRight ();
 		}
 
 		// Rotate
 		else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			transform.Rotate(0, 0, -90);
-
-			// See if valid
-			if (isValidGridPos())
-				// It's valid. Update grid.
-				updateGrid();
-			else
-				// It's not valid. revert.
-				transform.Rotate(0, 0, 90);
+			rotateLeft();
 		}
 
 		// Move Downwards and Fall
@@ -87,6 +93,43 @@ public class Group : MonoBehaviour {
 			lastFall = Time.time;
 		}
 		
+	}
+
+	void rotateLeft(){
+		transform.Rotate(0, 0, -90);
+
+		// See if valid
+		if (isValidGridPos())
+			// It's valid. Update grid.
+			updateGrid();
+		else
+			// It's not valid. revert.
+			transform.Rotate(0, 0, 90);
+	}
+	void moveLeft(){
+		// Modify position
+		transform.position += new Vector3 (-1, 0, 0);
+
+		// See if valid
+		if (isValidGridPos ())
+			// Its valid. Update grid.
+			updateGrid ();
+		else
+			// Its not valid. revert.
+			transform.position += new Vector3 (1, 0, 0);
+	}
+
+	void moveRight(){
+		// Modify position
+		transform.position += new Vector3 (1, 0, 0);
+
+		// See if valid
+		if (isValidGridPos ())
+			// It's valid. Update grid.
+			updateGrid ();
+		else
+			// It's not valid. revert.
+			transform.position += new Vector3 (-1, 0, 0);
 	}
 
 	bool isValidGridPos() {        

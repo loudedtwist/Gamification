@@ -18,6 +18,8 @@ public class GuiManager : SimpleSingleton<GuiManager>
     public SnackMessage message;
     public GameObject arCam;
     public GameObject guiLayer;
+	public Camera cam1;
+	public Camera cam2;
 
     void Start()
     {
@@ -81,6 +83,22 @@ public class GuiManager : SimpleSingleton<GuiManager>
     {
         MainThread.Call(ShowPage, "SplashPage");
     }
+
+	//TODO - Tetris as page?
+	public void ShowTetrisPage()
+	{
+		guiLayer.gameObject.SetActive(false);
+		cam1.gameObject.SetActive(false);
+		cam2.gameObject.SetActive(true);
+	}
+
+	public void BackFromTetrisPage()
+	{
+		Debug.LogWarning("Tetris Ended");
+		cam2.gameObject.SetActive(false);
+		cam1.gameObject.SetActive(true);
+		guiLayer.gameObject.SetActive(true);
+	}
 
     private void ShowPage(object pageNameObj)
     {

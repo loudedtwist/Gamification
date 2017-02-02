@@ -33,7 +33,7 @@ public class GuiManager : SimpleSingleton<GuiManager>
         }
     }
 
-    public void ShowQuizResults()
+    public void ShowQuizResultsPage()
     {
         MainThread.Call(ShowPage, "QuizResults");
     }
@@ -58,9 +58,18 @@ public class GuiManager : SimpleSingleton<GuiManager>
         MainThread.Call(ShowPage, "UserHomePage");
     }
 
+    public void ShowUserStatsPage()
+    {
+        MainThread.Call(ShowPage, "UserStatsPage");
+    }
+
     public void ShowBattleGroundLobbyPage()
     {
         MainThread.Call(ShowPage, "BattleGroundLobbyPage");
+    }
+    public void ShowBattleGroundNamedLobbyPage()
+    {
+        MainThread.Call(ShowPage, "BattleGroundNamedLobbyPage");
     }
 
     public void ShowWaitingForUserPage()

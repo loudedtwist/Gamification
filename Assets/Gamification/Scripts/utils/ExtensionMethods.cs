@@ -32,6 +32,13 @@ public static class ExtensionMethods
             b.gameObject.SetActive(state);
         } 
     }
+
+    public static void Interactable(this IList<Button> buttons, bool state)
+    {
+        foreach(var b in buttons){
+            b.interactable = state;
+        } 
+    }
     public static void FillWith(this IList<int> array, int num)
     {
         for(int i = 0; i<array.Count; i++){

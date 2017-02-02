@@ -9,24 +9,27 @@ public class GameManager : MonoBehaviour
     public Text readyGoBanner;
     public string readyText = "Game starts in ";
     public float secondsUntilStartVal = 3.0f;
+
     public float gameDuration = 20.0f;
+
+    public TeamManager teams;
+    public HostGame gameConnection;
+
     //change rounds in NetworkObject index generator
     public int roundsNumber = 6;
-    [SerializeField]
-    private int roundsRemains;
+
+    [SerializeField] private int roundsRemains;
     public QuestionLoader questionLoader;
 
-    private float secondsUntilStartCounter; 
-
-    void Start(){
-        roundsRemains = roundsNumber; 
-    }
+    private float secondsUntilStartCounter;
 
     public void StartGame()
     {
+        roundsRemains = roundsNumber;
         secondsUntilStartCounter = secondsUntilStartVal;
         ShowBanner(true);
 
+        questionLoader.NewGame();
         Invoke("ChangeToQuizPage", secondsUntilStartVal + 1.0f);
         InvokeRepeating("StartRound", secondsUntilStartVal + 1.0f, gameDuration);
         Invoke("FinishGame", secondsUntilStartVal + 1.0f + gameDuration * roundsNumber);
@@ -53,10 +56,8 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
-        GuiManager.Instance.ShowQuizResults();
-        Debug.LogAssertion("SCORE PAGE ");
-        Debug.LogAssertion("SCORE PAGE #");
-        Debug.LogAssertion("SCORE PAGE ##"); 
+        gameConnection.DropPreviousMatch();
+        GuiManager.Instance.ShowQuizResultsPage();
         //go to score page
     }
 
@@ -66,9 +67,9 @@ public class GameManager : MonoBehaviour
 
         Debug.LogAssertion("##############");
         Debug.LogAssertion("ROUND: " + (roundsNumber - roundsRemains + 1) + " #");
-        Debug.LogAssertion("ROUNDS REMAINS: " +roundsRemains + " #");
+        Debug.LogAssertion("ROUNDS REMAINS: " + roundsRemains + " #");
         Debug.LogAssertion("############## ");
-        GuiManager.Instance.ShowQuizPage();  
+        GuiManager.Instance.ShowQuizPage();
 
         if (roundsRemains < 1)
         {

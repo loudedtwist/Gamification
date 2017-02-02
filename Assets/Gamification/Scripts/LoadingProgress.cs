@@ -23,6 +23,7 @@ public class LoadingProgress : MonoBehaviour {
         width = progressRect.rect.width * 2 ;
         StartCoroutine(AnimatePr(loadingTime));
     }
+
     public void StartLoadingAnimation(){ 
         StartLoadingAnimation(duration);
     }

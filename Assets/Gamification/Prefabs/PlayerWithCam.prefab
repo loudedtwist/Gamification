@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 114183831966472486}
   - component: {fileID: 114657865050738014}
   - component: {fileID: 114735070546534682}
+  - component: {fileID: 114015889135622656}
   m_Layer: 0
   m_Name: PlayerWithCam
   m_TagString: Player
@@ -480,6 +481,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114015889135622656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968155700264472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d2c42cd10644692844301f3fadfe47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamManager: {fileID: 0}
+  question: {fileID: 0}
 --- !u!114 &114033795166364812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -836,6 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71da48d0aebd14793b609cfe62307843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nickName: 
 --- !u!114 &114673260979066886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -920,6 +935,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTeam: {fileID: 0}
+  myScore: 0
+  questionManager: {fileID: 0}
   teamManager: {fileID: 0}
 --- !u!114 &114755962913461106
 MonoBehaviour:

@@ -55,7 +55,7 @@ public class Question : NetworkBehaviour
         while(!countTask.IsCompleted) yield return null;
         int anz =  countTask.Result;
 
-        int []questions = new int[6];
+        int []questions = new int[anz < 15 ? anz : 15];
         FillWithRandomUniqueNumbers(questions, anz);
 
         if(questionsSynced.Count > 0) questionsSynced.Clear();

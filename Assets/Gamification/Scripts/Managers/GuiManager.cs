@@ -88,6 +88,7 @@ public class GuiManager : SimpleSingleton<GuiManager>
 	public void ShowTetrisPage()
 	{
 		guiLayer.gameObject.SetActive(false);
+        FindPage("Tetris").SetActive(true);
 		cam1.gameObject.SetActive(false);
 		cam2.gameObject.SetActive(true);
 	}
@@ -95,7 +96,8 @@ public class GuiManager : SimpleSingleton<GuiManager>
 	public void BackFromTetrisPage()
 	{
 		Debug.LogWarning("Tetris Ended");
-		cam2.gameObject.SetActive(false);
+		cam2.gameObject.SetActive(false); 
+        FindPage("Tetris").SetActive(true);
 		cam1.gameObject.SetActive(true);
 		guiLayer.gameObject.SetActive(true);
 	}
@@ -116,6 +118,14 @@ public class GuiManager : SimpleSingleton<GuiManager>
             pageToShow.SetActive(true);
         }
         Debug.Log("GUI : SWITCHED TO " + pageName + " PAGE");
+    }
+
+    private GameObject FindPage(string name){
+        foreach (var page in pages)
+        {
+            if (page.name == name) return page;
+        } 
+        return null;
     }
 
     // QR SCANNER

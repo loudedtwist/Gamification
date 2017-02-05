@@ -4850,7 +4850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &571721392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9045,7 +9045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.516}
+  m_Color: {r: 0.42352942, g: 0.7254902, b: 0.4, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10914,7 +10914,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!1 &1415393001
 GameObject:
@@ -12427,6 +12427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293372c77aa1946a5a3f5c8e2403f246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tetris: {fileID: 0}
   readyGoBanner: {fileID: 1574600874}
   readyText: 
   secondsUntilStartVal: 3

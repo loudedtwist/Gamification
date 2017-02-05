@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; 
 using UnityEngine;
 using UnityEngine.UI;
+using Parse;
 
 public class GameManager : MonoBehaviour
 {
+    public TetrisRound tetris; 
+    TetrisGameScore tetrisScore;
     public Text readyGoBanner;
     public string readyText = "Game starts in ";
     public float secondsUntilStartVal = 3.0f;
@@ -27,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+
+        tetrisScore = GameObject.FindGameObjectWithTag("Question").GetComponent<TetrisGameScore>();
+
         var startTime = secondsUntilStartVal + 1.0f;
         var timeUntilTetris = roundsNumber / 2 * roundDuration;
         roundsRemains = roundsNumber/2;
@@ -104,11 +110,64 @@ public class GameManager : MonoBehaviour
         GuiManager.Instance.ShowTetrisPage(); 
     }
 
-    void StopTetris(){
+    void StopTetris(){ 
+
+        SendTetrisScore();
+
         roundsRemains = roundsNumber/2;
         GuiManager.Instance.BackFromTetrisPage(); 
         InvokeRepeating("StartRound", 1.0f, roundDuration);
+        Invoke("ShowWhoWonTetris", 2.0f);
     }
+
+    void ShowWhoWonTetris(){
+
+        TetrisGameScore.TetrisScoreData? myScore = null;
+        foreach( var score in tetrisScore.gameScores){
+            if (score.playerName == ParseUser.CurrentUser.Username)
+                myScore = score;
+        }
+
+        if(myScore == null){
+                
+            Debug.LogError("TETRIS SCORE: Your score not found");
+            GuiManager.Instance.message.For(4).Show("Tetris: score not found");
+        }
+
+        List<TetrisGameScore.TetrisScoreData> scoreList = new List<TetrisGameScore.TetrisScoreData>();
+        foreach( var score in tetrisScore.gameScores){
+            scoreList.Add(score);
+        }
+
+        bool won = false;
+        string message; 
+        string messageWon = "You won a Power up.";
+        string messageLost = "You lost the game."; 
+
+        scoreList.Sort((a, b) => { return a.score.CompareTo(b.score); });
+        for( int i=0;i < scoreList.Count; i++){
+            if (scoreList[i].playerName == ParseUser.CurrentUser.Username && i < scoreList.Count/2)
+                won = true;
+        }
+
+        if(won){
+            message = messageWon + " Score: " + myScore.Value.score;
+        }else{ 
+            message = messageLost + " Score: " + myScore.Value.score;
+        }
+        GuiManager.Instance.message.For(4).Show(message);
+        
+    }
+    void SendTetrisScore()
+    {
+        var score = new TetrisGameScore.TetrisScoreData();
+        score.team = teams.localPlayer.myTeam.teamNr;
+        score.playerName = ParseUser.CurrentUser.Username;
+        score.playerId = ParseUser.CurrentUser.ObjectId;
+        score.score = TetrisRound.points;
+        teams.localPlayer.CmdAddTetrisScore(score);
+    }
+
     void ShowBanner(bool state)
     {
         readyGoBanner.gameObject.transform.parent.gameObject.SetActive(state);

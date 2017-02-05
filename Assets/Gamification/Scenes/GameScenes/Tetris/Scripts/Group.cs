@@ -11,7 +11,7 @@ public class Group : MonoBehaviour {
 	Vector2 swipeDelta = new Vector2();
 	float timeDelta = 0;
 	float initialFall = 0.2f;
-	float fallTime = initialFall;
+	float fallTime;
 
     void EndGame()
     {
@@ -20,6 +20,7 @@ public class Group : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        fallTime = initialFall;
 		// Default position not valid? Then it's game over
 		if (!isValidGridPos()) { 
 			EndGame();  

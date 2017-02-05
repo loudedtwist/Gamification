@@ -14,6 +14,7 @@ public class TeamPlayer : NetworkBehaviour
     public int myScore;
 
     [SerializeField] private Question questionManager;
+    [SerializeField] private TetrisGameScore tetrisGameScore;
 
     [SerializeField] private TeamManager teamManager;
 
@@ -34,12 +35,19 @@ public class TeamPlayer : NetworkBehaviour
     {
         GameObject myObj = GameObject.FindGameObjectWithTag("Question");
         questionManager = myObj.GetComponent<Question>();
+        tetrisGameScore = myObj.GetComponent<TetrisGameScore>();
     }
 
     [Command]
     public void CmdAddAnswer(Question.Answer answer)
     {
         questionManager.AddAnswer(answer);
+    }
+
+    [Command]
+    public void CmdAddTetrisScore(TetrisGameScore.TetrisScoreData newScore)
+    {
+        tetrisGameScore.AddTetrisScore(newScore);
     }
 
     public void IncrementScore()

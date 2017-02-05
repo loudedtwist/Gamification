@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4372645005608648}
   - component: {fileID: 114011418216679058}
   - component: {fileID: 114170707687701490}
+  - component: {fileID: 114105073519430572}
   m_Layer: 0
   m_Name: NetworkObjectInvisible
   m_TagString: Question
@@ -73,6 +74,17 @@ MonoBehaviour:
     i15: 94
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114105073519430572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014167431688992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4117fc52bee944f97ad418d4c55a9110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114170707687701490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,5 +96,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c24af6de81b4261956dab487251a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question1: 
-  questionNr: -1

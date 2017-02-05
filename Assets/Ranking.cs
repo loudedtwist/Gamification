@@ -7,7 +7,7 @@ public class Ranking : MonoBehaviour {
     public Text rankingText;
 
     void OnEnable(){
-        rankingText.text="";
+        rankingText.text="Ranking Top 10:\n";
         StartCoroutine(GetRanking());
     }
 

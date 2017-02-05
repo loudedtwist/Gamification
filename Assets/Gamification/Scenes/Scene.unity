@@ -1528,7 +1528,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1883507824386250, guid: 14b6b2d8dbfe3524f9bfadf96f7271b7, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14b6b2d8dbfe3524f9bfadf96f7271b7, type: 2}
@@ -2227,6 +2227,18 @@ Transform:
   m_PrefabParentObject: {fileID: 4540177035469962, guid: 14b6b2d8dbfe3524f9bfadf96f7271b7,
     type: 2}
   m_PrefabInternal: {fileID: 162470323}
+--- !u!114 &238000321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 238000319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b7e6aa235724769870142c34d3ec23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groups: []
 --- !u!1 &244685274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4128,8 +4140,8 @@ MonoBehaviour:
   message: {fileID: 1413347064}
   arCam: {fileID: 1890500827}
   guiLayer: {fileID: 803831595}
-  cam1: {fileID: 706662063}
-  cam2: {fileID: 1470852275}
+  camMain: {fileID: 706662063}
+  camTetris: {fileID: 1470852275}
   log: {fileID: 776067709}
   connectedUsers: {fileID: 1605110536}
   connectedUserList: {fileID: 313623403}
@@ -9740,6 +9752,11 @@ Transform:
   m_Father: {fileID: 803831596}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1264421603 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224570527953539372, guid: 14b6b2d8dbfe3524f9bfadf96f7271b7,
+    type: 2}
+  m_PrefabInternal: {fileID: 162470323}
 --- !u!1001 &1270996043
 Prefab:
   m_ObjectHideFlags: 0
@@ -15017,6 +15034,80 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1965944622}
+--- !u!1 &1982636870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1982636871}
+  - component: {fileID: 1982636873}
+  - component: {fileID: 1982636872}
+  m_Layer: 5
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1982636871
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982636870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1264421603}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 116.9, y: -20.4}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1982636872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982636870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 8de5cb11ffec16e40855ac5f09a66a75, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Score: 00000'
+--- !u!222 &1982636873
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982636870}
 --- !u!1 &1993086075
 GameObject:
   m_ObjectHideFlags: 0

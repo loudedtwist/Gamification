@@ -13,16 +13,14 @@ public class Group : MonoBehaviour {
 
     void EndGame()
     {
-        GameObject.Find("debugText").GetComponent<Text>().text = "GAME OVER!!!";
-        Destroy(gameObject);
-        GuiManager.Instance.BackFromTetrisPage();
+        GameObject.Find("debugText").GetComponent<Text>().text = "GAME OVER!!!";  
     }
 
 	// Use this for initialization
 	void Start () {
 		// Default position not valid? Then it's game over
-		if (!isValidGridPos()) {
-			EndGame();
+		if (!isValidGridPos()) { 
+			EndGame();  
 		}
 	}
 

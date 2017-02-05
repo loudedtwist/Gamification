@@ -8,6 +8,7 @@ TagManager:
   - TeamManagerTag
   - Question
   - Trash
+  - TetrisGroup
   layers:
   - Default
   - TransparentFX

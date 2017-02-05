@@ -13,13 +13,13 @@ public class GuiManager : SimpleSingleton<GuiManager>
     // guarantee this will be always a singleton only - can't use the constructor!
 
     public bool showSplashScreen;
-    public GameObject[] pages;
+    public List<GameObject> pages;
     public LoadingManager loading;
     public SnackMessage message;
     public GameObject arCam;
     public GameObject guiLayer;
-	public Camera cam1;
-	public Camera cam2;
+	public Camera camMain;
+	public Camera camTetris;
 
     void Start()
     {
@@ -109,19 +109,20 @@ public class GuiManager : SimpleSingleton<GuiManager>
         var tetrisPage = FindPage("Tetris");
         if(tetrisPage == null){
             Debug.LogError("TETRIS PAGE NOT FOUND ");
+			//pages.Add ();
             return;
         }
         tetrisPage.SetActive(true);
-		cam1.gameObject.SetActive(false);
-		cam2.gameObject.SetActive(true);
+		camMain.gameObject.SetActive(false);
+		camTetris.gameObject.SetActive(true);
 	}
 
 	public void BackFromTetrisPage()
 	{
 		Debug.LogWarning("Tetris Ended");
-		cam2.gameObject.SetActive(false); 
+		camTetris.gameObject.SetActive(false); 
         FindPage("Tetris").SetActive(false);
-		cam1.gameObject.SetActive(true);
+		camMain.gameObject.SetActive(true);
 		guiLayer.gameObject.SetActive(true);
 	}
 

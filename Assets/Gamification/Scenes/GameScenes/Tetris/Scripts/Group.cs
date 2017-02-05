@@ -10,6 +10,8 @@ public class Group : MonoBehaviour {
 	float lastFall = 0;
 	Vector2 swipeDelta = new Vector2();
 	float timeDelta = 0;
+	float initialFall = 0.2f;
+	float fallTime = initialFall;
 
     void EndGame()
     {
@@ -42,6 +44,8 @@ public class Group : MonoBehaviour {
 						moveLeft ();
 					else if (swipeDelta.x < -100)
 						moveRight ();
+					else if (swipeDelta.y > 100)
+						fallTime = 0.01f;
 					else
 						rotateLeft ();
 				}
@@ -66,13 +70,17 @@ public class Group : MonoBehaviour {
 		}
 
 		// Rotate
-		else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			rotateLeft();
+		else if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			rotateLeft ();
+		} 
+
+
+		else if (Input.GetKeyDown (KeyCode.DownArrow)) {
+			fallTime = 0.01f;
 		}
 
 		// Move Downwards and Fall
-		else if (Input.GetKeyDown(KeyCode.DownArrow) ||
-			Time.time - lastFall >= 1) {
+		else if (Time.time - lastFall >= fallTime) {
 			// Modify position
 			transform.position += new Vector3(0, -1, 0);
 
@@ -88,6 +96,7 @@ public class Group : MonoBehaviour {
 				Grid.deleteFullRows();
 
 				// Spawn next Group
+				fallTime = initialFall;
 				FindObjectOfType<Spawner>().spawnNext();
 
 				// Disable script

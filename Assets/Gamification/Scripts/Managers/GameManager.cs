@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     public Text readyGoBanner;
     public string readyText = "Game starts in ";
     public float secondsUntilStartVal = 3.0f;
+    bool wasTetrisPlayed = false;
 
-    public float gameDuration = 20.0f;
-
+    public float roundDuration = 20.0f;
+    public float tetrisDuration = 20.0f;
+    public int roundNr = 0;
     public TeamManager teams;
     public HostGame gameConnection;
 
@@ -25,14 +27,20 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        roundsRemains = roundsNumber;
+        var startTime = secondsUntilStartVal + 1.0f;
+        var timeUntilTetris = roundsNumber / 2 * roundDuration;
+        roundsRemains = roundsNumber/2;
+        roundNr = 0;
+
         secondsUntilStartCounter = secondsUntilStartVal;
         ShowBanner(true);
 
         questionLoader.NewGame();
-        Invoke("ChangeToQuizPage", secondsUntilStartVal + 1.0f);
-        InvokeRepeating("StartRound", secondsUntilStartVal + 1.0f, gameDuration);
-        Invoke("FinishGame", secondsUntilStartVal + 1.0f + gameDuration * roundsNumber);
+        Invoke("ChangeToQuizPage", startTime);
+        InvokeRepeating("StartRound", startTime, roundDuration);
+        //Invoke("StartTetris", startTime + timeUntilTetris);
+        //InvokeRepeating("StartRound", startTime + timeUntilTetris + tetrisDuration + 10.0f, gameDuration); 
+        Invoke("FinishGame", startTime + roundDuration * roundsNumber + tetrisDuration);
         InvokeRepeating("DecrementTimeToStart", 0.0f, 1.0f);
     }
 
@@ -66,18 +74,35 @@ public class GameManager : MonoBehaviour
         --roundsRemains;
 
         Debug.LogAssertion("##############");
-        Debug.LogAssertion("ROUND: " + (roundsNumber - roundsRemains + 1) + " #");
+        Debug.LogAssertion("ROUND: " + (++roundNr) + " #");
         Debug.LogAssertion("ROUNDS REMAINS: " + roundsRemains + " #");
         Debug.LogAssertion("############## ");
         GuiManager.Instance.ShowQuizPage();
 
         if (roundsRemains < 1)
         {
-            Debug.LogAssertion("STOPPING CORUTION");
+            Debug.LogAssertion("STOPPING ROUNDS INVOKE");
             CancelInvoke("StartRound");
+            if (!wasTetrisPlayed)
+            {
+                wasTetrisPlayed = true;
+                Invoke("StartTetris", roundDuration);
+                Invoke("StopTetris", roundDuration + tetrisDuration);
+            }
         }
     }
 
+    void StartTetris(){
+        questionLoader.ClearPage();
+        GuiManager.Instance.HideAllPages(); 
+        GuiManager.Instance.ShowTetrisPage(); 
+    }
+
+    void StopTetris(){
+        roundsRemains = roundsNumber/2;
+        GuiManager.Instance.BackFromTetrisPage(); 
+        InvokeRepeating("StartRound", 1.0f, roundDuration);
+    }
     void ShowBanner(bool state)
     {
         readyGoBanner.gameObject.transform.parent.gameObject.SetActive(state);

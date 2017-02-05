@@ -17,6 +17,7 @@ public class ClickedWaveAnimation : MonoBehaviour {
 	{
 		poolClass = gameObject.AddComponent<Pool>();
 		poolClass.CreatePool(WaveObject, PoolSize);
+
 	}
 
 	void Update () 
@@ -84,12 +85,14 @@ public class Pool : MonoBehaviour {
 
 	public void CreatePool(GameObject ObjectToPool, int numberOfObjects)
 	{
+        GameObject parent = GameObject.FindGameObjectWithTag("Trash");
 		ObjectPool = new GameObject[numberOfObjects];
 		this.ObjectToPool = ObjectToPool;
 
 		for (int i = 0; i < ObjectPool.Length; i++)
 		{
 			ObjectPool[i] = Instantiate(ObjectToPool) as GameObject;
+            ObjectPool[i].gameObject.transform.parent = parent.transform;
 			ObjectPool[i].SetActive(false);
 		}
 	}

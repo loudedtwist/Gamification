@@ -36,9 +36,17 @@ public class QuestionLoader : MonoBehaviour {
         round = -1;
     }
 
+    public void ClearPage(){
+        foreach(var t in answerLabels){
+            t.text = "";
+        }
+
+        questionLabel.text = "";
+    }
+
     void OnEnable () { 
         round++;
-
+        Debug.LogError("QEUSTION-LOADER WAS STARTED!!!");
         GameObject myObj = GameObject.FindGameObjectWithTag("Question");
         if (myObj != null) questionManager = myObj.GetComponent<Question>();
 
@@ -50,7 +58,7 @@ public class QuestionLoader : MonoBehaviour {
         FillWithRandomUniqueNumbers(randoms);
         answerButtons.Interactable(false);  
         StartCoroutine (GetQuestionAndUpdateUi()); 
-        progressBar.StartLoadingAnimation(gameManager.gameDuration);
+        progressBar.StartLoadingAnimation(gameManager.roundDuration);
         //execution of code after last line will continue immediately
 	}
 

@@ -50,6 +50,11 @@ public class GuiManager : SimpleSingleton<GuiManager>
         MainThread.Call(ShowPage, "QuizPage");
     }
 
+    public void HideAllPages()
+    {
+        ShowPage("hgakjkshdkjsahdja");
+    }
+
     public void ShowLoginPage()
     {
         MainThread.Call(ShowPage, "LoginPage");
@@ -88,7 +93,12 @@ public class GuiManager : SimpleSingleton<GuiManager>
 	public void ShowTetrisPage()
 	{
 		guiLayer.gameObject.SetActive(false);
-        FindPage("Tetris").SetActive(true);
+        var tetrisPage = FindPage("Tetris");
+        if(tetrisPage == null){
+            Debug.LogError("TETRIS PAGE NOT FOUND ");
+            return;
+        }
+        tetrisPage.SetActive(true);
 		cam1.gameObject.SetActive(false);
 		cam2.gameObject.SetActive(true);
 	}
@@ -97,7 +107,7 @@ public class GuiManager : SimpleSingleton<GuiManager>
 	{
 		Debug.LogWarning("Tetris Ended");
 		cam2.gameObject.SetActive(false); 
-        FindPage("Tetris").SetActive(true);
+        FindPage("Tetris").SetActive(false);
 		cam1.gameObject.SetActive(true);
 		guiLayer.gameObject.SetActive(true);
 	}

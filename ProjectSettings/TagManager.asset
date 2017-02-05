@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DebugText
   - TeamManagerTag
+  - Question
+  - Trash
   layers:
   - Default
   - TransparentFX

@@ -114,7 +114,7 @@ MonoBehaviour:
     UnscaledTimeAnimation: 0
     SaveState: 1
     AtomicAnimation: 0
-    ObjectState: 0
+    ObjectState: 1
     EndState: 0
     CallCallback: 15
     IntroEvents:

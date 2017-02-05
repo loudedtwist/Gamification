@@ -52,12 +52,26 @@ public class Grid : MonoBehaviour {
 	}
 
 	public static void deleteFullRows() {
+		int rows = 0;
 		for (int y = 0; y < h; ++y) {
 			if (isRowFull(y)) {
+				rows++;
 				deleteRow(y);
 				decreaseRowsAbove(y+1);
 				--y;
 			}
 		}
+		if (rows == 1)
+			TetrisRound.addPoints(40);
+		else if (rows == 2)
+			TetrisRound.addPoints(100);
+		else if (rows == 3)
+			TetrisRound.addPoints(300);
+		else if (rows == 4)
+			TetrisRound.addPoints(1200);
+	}
+
+	public static void resetGrid(){
+		grid = new Transform[w, h];
 	}
 }

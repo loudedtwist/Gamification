@@ -16,7 +16,7 @@ public class Group : MonoBehaviour {
 		// Default position not valid? Then it's game over
 		if (!isValidGridPos()) {
 			GameObject.Find ("debugText").GetComponent<Text> ().text = "GAME OVER!!!";
-			Destroy(gameObject);
+
 			GameObject.Find ("GuiManager").GetComponent ("GuiManager").SendMessage("BackFromTetrisPage");
 		}
 	}

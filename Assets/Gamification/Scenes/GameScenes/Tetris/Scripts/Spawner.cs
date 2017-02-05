@@ -8,8 +8,6 @@ public class Spawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// Spawn initial Group
-		spawnNext();
 	}
 	
 	// Update is called once per frame

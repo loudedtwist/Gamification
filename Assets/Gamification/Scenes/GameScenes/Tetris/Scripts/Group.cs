@@ -11,13 +11,18 @@ public class Group : MonoBehaviour {
 	Vector2 swipeDelta = new Vector2();
 	float timeDelta = 0;
 
+    void EndGame()
+    {
+        GameObject.Find("debugText").GetComponent<Text>().text = "GAME OVER!!!";
+        Destroy(gameObject);
+        GuiManager.Instance.BackFromTetrisPage();
+    }
+
 	// Use this for initialization
 	void Start () {
 		// Default position not valid? Then it's game over
 		if (!isValidGridPos()) {
-			GameObject.Find ("debugText").GetComponent<Text> ().text = "GAME OVER!!!";
-			Destroy(gameObject);
-			GameObject.Find ("GuiManager").GetComponent ("GuiManager").SendMessage("BackFromTetrisPage");
+			EndGame();
 		}
 	}
 

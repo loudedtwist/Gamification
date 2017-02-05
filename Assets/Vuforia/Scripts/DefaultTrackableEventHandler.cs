@@ -84,12 +84,12 @@ namespace Vuforia
                 component.enabled = true;
             }
 
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
-
+            var roomName = mTrackableBehaviour.TrackableName;
+            Debug.LogError("Trackable " + roomName + " found");
+            GuiManager.Instance.BackFromQrScannerPage(); 
+            GuiManager.Instance.ShowBattleGroundFromQRPage(roomName);
             //TODO map hier different images to diffr. lobbys -> mTrackableBehaviour.TrackableName
 
-            GuiManager.Instance.BackFromQrScannerPage();
-            GuiManager.Instance.ShowBattleGroundLobbyPage();
         }
 
 

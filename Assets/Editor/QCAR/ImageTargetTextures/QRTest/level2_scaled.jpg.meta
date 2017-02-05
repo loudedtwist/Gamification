@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 04659a96f1e86473481a07d1ace9c200
-timeCreated: 1484757300
-licenseType: Free
+guid: b9253477623649e282ad3505b0f28919
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    8900000: generatedCubemap
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -44,8 +43,8 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
-  textureShape: 1
+  textureType: 10
+  textureShape: 2
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -53,7 +52,7 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

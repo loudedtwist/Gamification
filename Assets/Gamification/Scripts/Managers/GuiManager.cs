@@ -74,6 +74,19 @@ public class GuiManager : SimpleSingleton<GuiManager>
     {
         MainThread.Call(ShowPage, "BattleGroundLobbyPage");
     }
+    public void ShowBattleGroundFromQRPage(string roomName)
+    {
+        ShowPage("BattleGroundQRLobbyPage");
+        var lobbyPage = FindPage("BattleGroundQRLobbyPage");
+        if( lobbyPage == null){
+            Debug.LogError("Lobby page not found");
+        }
+        var hostScript = lobbyPage.GetComponentInChildren<HostGameFromQR>();
+        if( hostScript == null){
+            Debug.LogError("Host script not found");
+        }
+        hostScript.CreateOrConnectToRoom(roomName);
+    }
     public void ShowBattleGroundNamedLobbyPage()
     {
         MainThread.Call(ShowPage, "BattleGroundNamedLobbyPage");

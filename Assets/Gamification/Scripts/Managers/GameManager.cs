@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
         Invoke("FinishGame", startTime + roundDuration * roundsNumber + tetrisDuration);
         InvokeRepeating("DecrementTimeToStart", 0.0f, 1.0f);
     }
+    public void StopGame(){ 
+        CancelInvoke("ChangeToQuizPage");
+        CancelInvoke("StartRound"); 
+        CancelInvoke("FinishGame");
+        CancelInvoke("DecrementTimeToStart");
+    }
 
     public void DecrementTimeToStart()
     {

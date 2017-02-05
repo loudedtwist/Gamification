@@ -8,9 +8,12 @@ public class EWZButtonState : MonoBehaviour {
     Animator animator;
 
     void Start(){ 
-        animator = GetComponent<Animator>();
     }
     void OnEnable(){  
+        animator = GetComponent<Animator>();
+        if(animator == null){
+            Debug.LogError("Animator in button not found");
+        }
         animator.Play("Normal", -1, 0); 
     }
     public void AnswerHit(bool trueFalse){  

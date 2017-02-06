@@ -4610,7 +4610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &556288866
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15716,7 +15716,7 @@ Prefab:
     - target: {fileID: 114796181189936552, guid: 53b1b69877eb54f279ea76518af27dd6,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowBattleGroundLobbyPage
+      value: ShowQrScannerPage
       objectReference: {fileID: 0}
     - target: {fileID: 114796181189936552, guid: 53b1b69877eb54f279ea76518af27dd6,
         type: 2}
@@ -15890,6 +15890,21 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 142816, guid: a4888d3b6a42d104dbf7df591ab240b6, type: 2}
   m_PrefabInternal: {fileID: 827061244}
+--- !u!1 &2089714560 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
+  m_PrefabInternal: {fileID: 805624546}
+--- !u!114 &2089714561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089714560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a617739d200fe474aa249cbc6b9a79fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2090336789
 GameObject:
   m_ObjectHideFlags: 0
